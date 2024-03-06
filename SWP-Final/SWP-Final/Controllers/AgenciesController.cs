@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -189,37 +191,65 @@ namespace SWP_Final.Controllers
 
 
 
-        //POST: api/Agencies/PostImage
-        [HttpPost("PostImage")]
-        public async Task<IActionResult> PostInfoWithimageAsync([FromForm] AgencyModel agencyModel)
+        [HttpPost("PostAgencyWithImage")]
+        public async Task<IActionResult> PostInfoWithimageAsync([FromForm] AgencyRegisterModel agencyModel)
         {
-            string filenameimageacenciesmodel = "Images/AgenciesImage/" + agencyModel.FileImage.FileName;
             if (ModelState.IsValid)
             {
-                var agency = new Agency
+                try
                 {
-                    AgencyId = agencyModel.AgencyId,
-                    FirstName = agencyModel.FirstName,
-
-                };
-
-                if (agencyModel.FileImage.Length > 0)
-                {
-                    var path = GetFilePath(filenameimageacenciesmodel);
-                    using (var stream = System.IO.File.Create(path))
+                    var user = new User
                     {
-                        await agencyModel.FileImage.CopyToAsync(stream);
+                        UserId = Guid.NewGuid().ToString(),
+                        Username = agencyModel.Username,
+                        Password = agencyModel.Password,
+                        RoleId = "Agency"
+                    };
+
+                    var agency = new Agency
+                    {
+                        AgencyId = Guid.NewGuid().ToString(),
+                        FirstName = agencyModel.FirstName,
+                        LastName = agencyModel.LastName,
+                        Address = agencyModel.Address,
+                        Phone = agencyModel.Phone,
+                        UserId = user.UserId
+                    };
+
+                    if (agencyModel.FileImage != null && agencyModel.FileImage.Length > 0)
+                    {
+                        string filename = "Images/AgenciesImage/" + agencyModel.FileImage.FileName;
+
+                        var path = GetFilePath(filename);
+                        using (var stream = System.IO.File.Create(path))
+                        {
+                            await agencyModel.FileImage.CopyToAsync(stream);
+                        }
+                        agency.Images = filename;
                     }
-                    agency.Images = filenameimageacenciesmodel;
+
+                    _context.Users.Add(user);
+                    _context.Agencies.Add(agency);
+                    await _context.SaveChangesAsync();
+
+                    // Remove circular references before serializing
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve
+                    };
+
+                    return Ok(JsonSerializer.Serialize(agency, options));
                 }
-
-                _context.Agencies.Add(agency);
-                await _context.SaveChangesAsync();
-
-                return Ok(agency);
+                catch (Exception ex)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, "Error while saving data: " + ex.Message);
+                }
             }
             return BadRequest("Invalid model state.");
         }
+
+
+        
 
         //GET: api/Agencies/UploadImageNoImage
         [HttpGet("UploadImageNoImage")]
