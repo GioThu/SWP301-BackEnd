@@ -22,13 +22,36 @@ namespace SWP_Final.Repositories
 
         public async Task DeleteUserAsync(string id)
         {
+            // Tìm user cần xóa
             var user = await _context.Users.FindAsync(id);
-            if (user != null)
+            if (user == null)
             {
-                _context.Users.Remove(user);
-                await _context.SaveChangesAsync();
+                throw new ArgumentNullException(nameof(user), "User not found.");
             }
+
+            // Xoá customer có UserId tương ứng (nếu có)
+            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.UserId == id);
+            if (customer != null)
+            {
+                _context.Customers.Remove(customer);
+            }
+
+            // Xoá agency có UserId tương ứng (nếu có)
+            var agency = await _context.Agencies.FirstOrDefaultAsync(a => a.UserId == id);
+            if (agency != null)
+            {
+                _context.Agencies.Remove(agency);
+            }
+
+            // Xoá user
+            _context.Users.Remove(user);
+
+            // Lưu các thay đổi vào cơ sở dữ liệu
+            await _context.SaveChangesAsync();
         }
+
+
+
 
         public async Task<List<UserModel>> GetAllUsersAsync()
         {

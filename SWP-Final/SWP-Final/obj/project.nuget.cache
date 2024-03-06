@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VozzvMkPqPSsu3AgpxJZVTsWzY9k8QZeLlhzJTJgaFxFqSI6i0hWHeUzxiOeZNYAP/dBH2DEOUHHKkIc+8FEUw==",
+  "dgSpecHash": "q/qyemFmKPOd7GCTsR4RYvimRnmg32tCuwc41oAok7cVR1seSK3BgYVz5vdmlSF7rqx0no07Bdz868JoqBEX/A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Desktop\\SWP391-Backend\\SWP-Final\\SWP-Final\\SWP-Final.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\SWP-Final.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
