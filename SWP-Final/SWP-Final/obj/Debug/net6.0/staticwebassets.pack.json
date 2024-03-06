@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Admin\\Desktop\\SWP391-Backend\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\mai.png",
+      "PackagePath": "staticwebassets\\Images\\AgenciesImage\\mai.png"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Desktop\\SWP391-Backend\\SWP-Final\\SWP-Final\\wwwroot\\Images\\common\\noimage.png",
+      "PackagePath": "staticwebassets\\Images\\common\\noimage.png"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.SWP-Final.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.SWP-Final.props",
+      "PackagePath": "build\\SWP-Final.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.SWP-Final.props",
+      "PackagePath": "buildMultiTargeting\\SWP-Final.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.SWP-Final.props",
+      "PackagePath": "buildTransitive\\SWP-Final.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
