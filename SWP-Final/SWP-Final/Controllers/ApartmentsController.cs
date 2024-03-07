@@ -129,6 +129,54 @@ namespace SWP_Final.Controllers
             return NoContent();
         }
 
+        [HttpPost("FilterByBedrooms")]
+        public async Task<ActionResult<IEnumerable<Apartment>>> FilterApartmentsByBedrooms([FromBody] int bedrooms)
+        {
+            var filteredApartments = await _context.Apartments
+                                                .Where(a => a.NumberOfBedrooms == bedrooms)
+                                                .ToListAsync();
+
+            if (filteredApartments.Count == 0)
+            {
+                return NotFound($"No apartments found with {bedrooms} bedroom(s).");
+            }
+
+            return filteredApartments;
+        }
+
+        // POST: api/Apartments/FilterByBathrooms
+        [HttpPost("FilterByBathrooms")]
+        public async Task<ActionResult<IEnumerable<Apartment>>> FilterApartmentsByBathrooms([FromBody] int bathrooms)
+        {
+            var filteredApartments = await _context.Apartments
+                                                .Where(a => a.NumberOfBathrooms == bathrooms)
+                                                .ToListAsync();
+
+            if (filteredApartments.Count == 0)
+            {
+                return NotFound($"No apartments found with {bathrooms} bathroom(s).");
+            }
+
+            return filteredApartments;
+        }
+
+        // POST: api/Apartments/FilterByPriceRange
+        [HttpPost("FilterByPriceRange")]
+        public async Task<ActionResult<IEnumerable<Apartment>>> FilterApartmentsByPriceRange([FromBody] PriceFilterModel filter)
+        {
+            var filteredApartments = await _context.Apartments
+                                                .Where(a => a.Price >= filter.MinPrice && a.Price <= filter.MaxPrice)
+                                                .ToListAsync();
+
+            if (filteredApartments.Count == 0)
+            {
+                return NotFound($"No apartments found within the price range ${filter.MinPrice} to ${filter.MaxPrice}.");
+            }
+
+            return filteredApartments;
+        }
+
+
         private bool ApartmentExists(string id)
         {
             return (_context.Apartments?.Any(e => e.ApartmentId == id)).GetValueOrDefault();
