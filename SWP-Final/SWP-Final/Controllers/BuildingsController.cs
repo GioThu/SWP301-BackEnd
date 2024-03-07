@@ -385,6 +385,27 @@ namespace SWP_Final.Controllers
             return BadRequest("Invalid model state.");
         }
 
+        [HttpGet("GetListBuildingDetails")]
+        public async Task<ActionResult<IEnumerable<ListBuildingDetailsModel>>> GetListBuildingDetails()
+        {
+            var buildingDetails = await _context.Buildings
+                                                .Include(b => b.Project) // Include the Project entity
+                                                .Select(b => new ListBuildingDetailsModel
+                                                {
+                                                    ProjectName = b.Project.Name,
+                                                    BuildingName = b.Name,
+                                                    NumberOfFloors = b.NumberOfFloors ?? 0,
+                                                    NumberOfApartments = b.NumberOfApartments ?? 0
+                                                }).ToListAsync();
+
+            if (buildingDetails == null)
+            {
+                return NotFound();
+            }
+
+            return buildingDetails;
+        }
+
 
         [NonAction]
         private string valiablenoimage() => "Images/common/noimage.png";
