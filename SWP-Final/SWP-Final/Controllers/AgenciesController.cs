@@ -423,6 +423,21 @@ namespace SWP_Final.Controllers
             }
         }
 
+        [HttpGet("GetAgencyStatistics")]
+        public async Task<ActionResult<AgencyStatisticsModel>> GetAgencyStatistics(string agencyId)
+        {
+            var totalPosts = _context.Posts.Count(p => p.AgencyId == agencyId);
+            var orderHistoryCount = _context.Orders.Count(o => o.AgencyId == agencyId);
+
+            var agencyStatistics = new AgencyStatisticsModel
+            {
+                TotalPosts = totalPosts,
+                OrderHistoryCount = orderHistoryCount
+            };
+
+            return agencyStatistics;
+        }
+
 
         [NonAction]
 
