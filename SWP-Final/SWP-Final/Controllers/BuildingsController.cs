@@ -392,6 +392,7 @@ namespace SWP_Final.Controllers
                                                 .Include(b => b.Project) // Include the Project entity
                                                 .Select(b => new ListBuildingDetailsModel
                                                 {
+                                                    BuildingId = b.BuildingId,
                                                     ProjectName = b.Project.Name,
                                                     BuildingName = b.Name,
                                                     NumberOfFloors = b.NumberOfFloors ?? 0,
