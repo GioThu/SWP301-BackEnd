@@ -203,7 +203,9 @@ namespace SWP_Final.Controllers
                         UserId = Guid.NewGuid().ToString(),
                         Username = agencyModel.Username,
                         Password = agencyModel.Password,
-                        RoleId = "Agency"
+                        RoleId = "Agency",
+                         Status = "active",
+                        CreateDate = DateTime.Now
                     };
 
                     var agency = new Agency
@@ -261,7 +263,9 @@ namespace SWP_Final.Controllers
                         UserId = Guid.NewGuid().ToString(),
                         Username = agencyModel.Username,
                         Password = agencyModel.Password,
-                        RoleId = "Agency"
+                        RoleId = "Agency",
+                        Status = "active",
+                        CreateDate = DateTime.Now
                     };
 
                     var agency = new Agency

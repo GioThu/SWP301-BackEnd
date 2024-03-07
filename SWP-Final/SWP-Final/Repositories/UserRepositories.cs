@@ -103,8 +103,10 @@ namespace SWP_Final.Repositories
                 UserId = Guid.NewGuid().ToString(), // Automatically generate a new GUID for the UserId
                 Username = username,
                 Password = password,
-                RoleId = "Customer" // Set the default RoleId as "Customer"
-                                    // Add other default values or fields as necessary
+                RoleId = "Customer", // Set the default RoleId as "Customer"
+                                     // Add other default values or fields as necessary
+                Status = "active",
+                CreateDate = DateTime.Now
             };
 
             var newCustomer = new Customer
@@ -137,8 +139,10 @@ namespace SWP_Final.Repositories
                 UserId = Guid.NewGuid().ToString(), // Automatically generate a new GUID for the UserId
                 Username = username,
                 Password = password,
-                RoleId = "Customer" // Set the default RoleId as "Customer"
+                RoleId = "Customer", // Set the default RoleId as "Customer"
                                     // Add other default values or fields as necessary
+                 Status = "active",
+                CreateDate = DateTime.Now
             };
 
             var newCustomer = new Customer
