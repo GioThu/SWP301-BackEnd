@@ -438,6 +438,22 @@ namespace SWP_Final.Controllers
             return agencyStatistics;
         }
 
+        [HttpGet("GetListOrderWithAgencyID/{agencyId}")]
+        public async Task<ActionResult<IEnumerable<Order>>> GetListOrderWithAgencyID(string agencyId)
+        {
+            // Retrieve orders associated with the specified agencyId
+            var orders = await _context.Orders
+                                       .Where(o => o.AgencyId == agencyId)
+                                       .ToListAsync();
+
+            if (orders == null)
+            {
+                return NotFound();
+            }
+
+            return orders;
+        }
+
 
         [NonAction]
 
