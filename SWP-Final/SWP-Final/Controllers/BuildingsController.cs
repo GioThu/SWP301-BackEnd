@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using SWP_Final.Entities;
 using SWP_Final.Models;
@@ -187,47 +188,47 @@ namespace SWP_Final.Controllers
 
 
 
-        //POST: api/Buildings/PostImage
-        [HttpPost("PostInfomationAndImage")]
-        public async Task<IActionResult> PostInfoWithimageBuilding([FromForm] BuildingModel buildingModel)
-        {
-            string fileNameImageBuildingModel = "Images/BuildingImages/" + buildingModel.FileImage.FileName;
-            if (ModelState.IsValid)
-            {
-                var building = new Building
-                {
-                    BuildingId = buildingModel.BuildingId,
-                    Name = buildingModel.Name,
-                    Address = buildingModel.Address,
-                    TypeOfRealEstate = buildingModel.TypeOfRealEstate,
-                    NumberOfFloors = buildingModel.NumberOfFloors,
-                    NumberOfApartments = buildingModel.NumberOfApartments,
-                    Status = buildingModel.Status,
-                    YearOfConstruction = buildingModel.YearOfConstruction,
-                    Describe = buildingModel.Describe,
-                    Investor = buildingModel.Investor,
-                    Area = buildingModel.Area,
-                    Amenities = buildingModel.Amenities,
+        ////POST: api/Buildings/PostImage
+        //[HttpPost("PostInfomationAndImage")]
+        //public async Task<IActionResult> PostInfoWithimageBuilding([FromForm] BuildingModel buildingModel)
+        //{
+        //    string fileNameImageBuildingModel = "Images/BuildingImages/" + buildingModel.FileImage.FileName;
+        //    if (ModelState.IsValid)
+        //    {
+        //        var building = new Building
+        //        {
+        //            BuildingId = buildingModel.BuildingId,
+        //            Name = buildingModel.Name,
+        //            Address = buildingModel.Address,
+        //            TypeOfRealEstate = buildingModel.TypeOfRealEstate,
+        //            NumberOfFloors = buildingModel.NumberOfFloors,
+        //            NumberOfApartments = buildingModel.NumberOfApartments,
+        //            Status = buildingModel.Status,
+        //            YearOfConstruction = buildingModel.YearOfConstruction,
+        //            Describe = buildingModel.Describe,
+        //            Investor = buildingModel.Investor,
+        //            Area = buildingModel.Area,
+        //            Amenities = buildingModel.Amenities,
 
-                };
+        //        };
 
-                if (buildingModel.FileImage.Length > 0)
-                {
-                    var path = GetFilePath(fileNameImageBuildingModel);
-                    using (var stream = System.IO.File.Create(path))
-                    {
-                        await buildingModel.FileImage.CopyToAsync(stream);
-                    }
-                    building.Images = fileNameImageBuildingModel;
-                }
+        //        if (buildingModel.FileImage.Length > 0)
+        //        {
+        //            var path = GetFilePath(fileNameImageBuildingModel);
+        //            using (var stream = System.IO.File.Create(path))
+        //            {
+        //                await buildingModel.FileImage.CopyToAsync(stream);
+        //            }
+        //            building.Images = fileNameImageBuildingModel;
+        //        }
 
-                _context.Buildings.Add(building);
-                await _context.SaveChangesAsync();
+        //        _context.Buildings.Add(building);
+        //        await _context.SaveChangesAsync();
 
-                return Ok(building);
-            }
-            return BadRequest("Invalid model state.");
-        }
+        //        return Ok(building);
+        //    }
+        //    return BadRequest("Invalid model state.");
+        //}
 
         //GET: api/Buildings/UploadImageNoImage
         //upload images no image when the image entry in the file is empty or null
@@ -348,10 +349,48 @@ namespace SWP_Final.Controllers
             }
         }
 
+        //POST: api/Buildings/PostImage
+        [HttpPost("PostInfomationAndImage")]
+        public async Task<IActionResult> PostInfoWithimageBuilding([FromForm] AddBuildingModel buildingModel)
+        {
+            string fileNameImageBuildingModel = "Images/BuildingImages/" + buildingModel.FileImage.FileName;
+            if (ModelState.IsValid)
+            {
+                var building = new Building
+                {
+                    ProjectId = buildingModel.ProjectId,
+                    BuildingId = Guid.NewGuid().ToString(),
+                    Name = buildingModel.Name,
+                    NumberOfFloors = buildingModel.NumberOfFloor,
+                    NumberOfApartments = buildingModel.NumberOfApartment,
+                    Describe = buildingModel.Description,
+
+                };
+
+                if (buildingModel.FileImage.Length > 0)
+                {
+                    var path = GetFilePath(fileNameImageBuildingModel);
+                    using (var stream = System.IO.File.Create(path))
+                    {
+                        await buildingModel.FileImage.CopyToAsync(stream);
+                    }
+                    building.Images = fileNameImageBuildingModel;
+                }
+
+                _context.Buildings.Add(building);
+                await _context.SaveChangesAsync();
+
+                return Ok(building);
+            }
+            return BadRequest("Invalid model state.");
+        }
+
 
         [NonAction]
         private string valiablenoimage() => "Images/common/noimage.png";
         private string GetFilePath(string filename) => Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filename);
+
+        
 
 
         private bool BuildingExists(string id)
