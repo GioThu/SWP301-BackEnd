@@ -19,6 +19,6 @@ namespace SWP_Final.Repositories
         Task RegisterAsync(string firstName, string lastName, string phone,
             string address, string gender, string username, string password,
             string image);
-
+        Task RegisterAsyncWithNoImage(string firstName, string lastName, string phone, string address, string gender, string username, string password);
     }
 }

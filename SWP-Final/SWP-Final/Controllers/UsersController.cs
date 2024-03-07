@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SWP_Final.Entities;
 using SWP_Final.Models;
 using SWP_Final.Repositories;
 
@@ -11,6 +12,7 @@ namespace SWP_Final.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserRepositories _userRepo;
+        private string fileNameImageAcenciesModel;
 
         public UsersController(IUserRepositories repository)
         {
@@ -76,13 +78,20 @@ namespace SWP_Final.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromForm] RegisterModel registerModel)
         {
-            string fileNameImageAcenciesModel = "Images/CustomersImage/" + registerModel.FileImage.FileName;
+            if (registerModel.FileImage != null && registerModel.FileImage.Length > 0)
+            {
+                string filename = "Images/CustomerImages/"+registerModel.FileImage.FileName;
+
+                var path = GetFilePath(filename);
+                using (var stream = System.IO.File.Create(path))
+                {
+                    await registerModel.FileImage.CopyToAsync(stream);
+                }
+                fileNameImageAcenciesModel = filename;
+            }
 
             try
             {
-                // Lấy hình ảnh từ registerModel
-                var image = registerModel.FileImage.FileName;
-
                 // Thực hiện đăng ký sử dụng thông tin từ registerModel
                 await _userRepo.RegisterAsync(registerModel.FirstName, registerModel.LastName,
                     registerModel.Phone, registerModel.Address, registerModel.Gender,
@@ -95,6 +104,28 @@ namespace SWP_Final.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("registerNoImage")]
+        public async Task<IActionResult> RegisterWithNoImage([FromForm] RegisterNoImageModel registerModel)
+        {
+            
+            try
+            {
+                // Thực hiện đăng ký sử dụng thông tin từ registerModel
+                await _userRepo.RegisterAsyncWithNoImage(registerModel.FirstName, registerModel.LastName,
+                    registerModel.Phone, registerModel.Address, registerModel.Gender,
+                    registerModel.Username, registerModel.Password);
+
+                return CreatedAtAction(nameof(GetUserById), new { id = registerModel.Username }, registerModel);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        private string GetFilePath(string filename) => Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filename);
+
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromForm]LoginModel loginModel)

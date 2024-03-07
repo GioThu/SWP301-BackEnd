@@ -249,7 +249,55 @@ namespace SWP_Final.Controllers
         }
 
 
-        
+        [HttpPost("PostAgencyWithNoImage")]
+        public async Task<IActionResult> PostInfoWithNoImageAsync([FromForm] AgencyRegisterWithNoImageModel agencyModel)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var user = new User
+                    {
+                        UserId = Guid.NewGuid().ToString(),
+                        Username = agencyModel.Username,
+                        Password = agencyModel.Password,
+                        RoleId = "Agency"
+                    };
+
+                    var agency = new Agency
+                    {
+                        AgencyId = Guid.NewGuid().ToString(),
+                        FirstName = agencyModel.FirstName,
+                        LastName = agencyModel.LastName,
+                        Address = agencyModel.Address,
+                        Phone = agencyModel.Phone,
+                        UserId = user.UserId
+                    };
+                    agency.Images = null;
+
+
+                    _context.Users.Add(user);
+                    _context.Agencies.Add(agency);
+                    await _context.SaveChangesAsync();
+
+                    // Remove circular references before serializing
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve
+                    };
+
+                    return Ok(JsonSerializer.Serialize(agency, options));
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, "Error while saving data: " + ex.Message);
+                }
+            }
+            return BadRequest("Invalid model state.");
+        }
+
+
+
 
         //GET: api/Agencies/UploadImageNoImage
         [HttpGet("UploadImageNoImage")]
@@ -282,6 +330,8 @@ namespace SWP_Final.Controllers
 
             return Ok("No agencies needed updates.");
         }
+
+
 
         //POST: api/Agencies/UploadImage
         [HttpPost("UploadImage/{id}")]

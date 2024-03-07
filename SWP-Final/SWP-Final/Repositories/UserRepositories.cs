@@ -125,7 +125,38 @@ namespace SWP_Final.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task RegisterAsyncWithNoImage(string firstName, string lastName, string phone, string address, string gender, string username, string password)
+        {
+            if (await _context.Users.AnyAsync(u => u.Username == username))
+            {
+                throw new Exception("Username already exists."); // Use a more specific exception for real-world applications
+            }
 
+            var newUser = new User
+            {
+                UserId = Guid.NewGuid().ToString(), // Automatically generate a new GUID for the UserId
+                Username = username,
+                Password = password,
+                RoleId = "Customer" // Set the default RoleId as "Customer"
+                                    // Add other default values or fields as necessary
+            };
 
+            var newCustomer = new Customer
+            {
+                CustomerId = Guid.NewGuid().ToString(), // Automatically generate a new GUID for the CustomerId
+                FirstName = firstName,
+                LastName = lastName,
+                Address = address,
+                Gender = gender,
+                Images = null,
+                UserId = newUser.UserId,
+                Phone = phone
+                // Add other properties as necessary
+            };
+
+            await _context.Users.AddAsync(newUser);
+            await _context.Customers.AddAsync(newCustomer);
+            await _context.SaveChangesAsync();
+        }
     }
 }
