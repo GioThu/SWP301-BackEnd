@@ -10,7 +10,9 @@ namespace SWP_Final.Repositories
 
         public Task<UserModel> GetUserByNameAsync(string name);
 
-        public Task DeleteUserAsync(string id);    
+        public Task DeleteUserAsync(string id);
+
+        public Task BlockUsers(string id);
 
         public Task UpdateUserAsync(UserModel user, String userID);
 

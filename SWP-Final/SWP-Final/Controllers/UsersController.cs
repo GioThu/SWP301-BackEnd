@@ -19,6 +19,24 @@ namespace SWP_Final.Controllers
             _userRepo = repository;
         }
 
+        [HttpPut("BlockUser/{id}")]
+        public async Task<IActionResult> BlockUser(string id)
+        {
+            try
+            {
+                await _userRepo.BlockUsers(id);
+                return Ok("User's status has been updated successfully.");
+            }
+            catch (ArgumentNullException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {

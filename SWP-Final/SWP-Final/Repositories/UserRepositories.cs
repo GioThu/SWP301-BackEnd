@@ -84,7 +84,14 @@ namespace SWP_Final.Repositories
 
         public async Task<UserModel> LoginAsync(string username, string password)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(u => u.Username == username && u.Password == password);
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.Username == username && u.Password == password && u.Status == "Active");
+
+            if (user == null)
+            {
+                // Nếu không tìm thấy người dùng hoặc trạng thái của họ không phải là Active, trả về null
+                return null;
+            }
+
             return _mapper.Map<UserModel>(user);
         }
 
@@ -105,7 +112,7 @@ namespace SWP_Final.Repositories
                 Password = password,
                 RoleId = "Customer", // Set the default RoleId as "Customer"
                                      // Add other default values or fields as necessary
-                Status = "active",
+                Status = "Active",
                 CreateDate = DateTime.Now
             };
 
@@ -141,7 +148,7 @@ namespace SWP_Final.Repositories
                 Password = password,
                 RoleId = "Customer", // Set the default RoleId as "Customer"
                                     // Add other default values or fields as necessary
-                 Status = "active",
+                 Status = "Active",
                 CreateDate = DateTime.Now
             };
 
@@ -162,5 +169,20 @@ namespace SWP_Final.Repositories
             await _context.Customers.AddAsync(newCustomer);
             await _context.SaveChangesAsync();
         }
+
+        public async Task BlockUsers(string id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user), "User not found.");
+            }
+
+            // Đổi trạng thái từ "active" sang "block" và ngược lại
+            user.Status = user.Status == "Active" ? "Block" : "Active";
+
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

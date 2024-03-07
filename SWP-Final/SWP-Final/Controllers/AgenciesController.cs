@@ -204,7 +204,7 @@ namespace SWP_Final.Controllers
                         Username = agencyModel.Username,
                         Password = agencyModel.Password,
                         RoleId = "Agency",
-                         Status = "active",
+                         Status = "Active",
                         CreateDate = DateTime.Now
                     };
 
@@ -264,7 +264,7 @@ namespace SWP_Final.Controllers
                         Username = agencyModel.Username,
                         Password = agencyModel.Password,
                         RoleId = "Agency",
-                        Status = "active",
+                        Status = "Active",
                         CreateDate = DateTime.Now
                     };
 
