@@ -455,6 +455,34 @@ namespace SWP_Final.Controllers
         }
 
 
+
+[HttpGet("GetAgencyNames")]
+public async Task<ActionResult<IEnumerable<GetAgencyNameModel>>> GetAgencyNames()
+{
+    if (_context.Agencies == null)
+    {
+        return NotFound();
+    }
+
+    var agencyDetailsList = await _context.Agencies
+        .Select(a => new GetAgencyNameModel
+        {
+            FirstName = a.FirstName,
+            LastName = a.LastName,
+            AgencyId = a.AgencyId
+        })
+        .ToListAsync();
+
+    // Check if the agency details list is empty
+    if (agencyDetailsList.Count == 0)
+    {
+        return NotFound("No agencies found.");
+    }
+
+    return agencyDetailsList;
+}
+
+
         [NonAction]
 
         private string valiablenoimage() => "Images/common/noimage.png";

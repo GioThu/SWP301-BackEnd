@@ -407,6 +407,26 @@ namespace SWP_Final.Controllers
             return buildingDetails;
         }
 
+        [HttpGet("GetProjectBuildingDetails")]
+        public async Task<ActionResult<IEnumerable<ProjectBuildingDetailsModel>>> GetProjectBuildingDetails()
+        {
+            var projectBuildingDetailsList = await _context.Buildings
+                .Select(b => new ProjectBuildingDetailsModel
+                {
+                    ProjectId = b.ProjectId,
+                    ProjectName = b.Project.Name, // Accessing ProjectName from the associated Project entity
+                    BuildingId = b.BuildingId,
+                    BuildingName = b.Name
+                }).ToListAsync();
+
+            if (projectBuildingDetailsList == null)
+            {
+                return NotFound();
+            }
+
+            return projectBuildingDetailsList;
+        }
+
 
         [NonAction]
         private string valiablenoimage() => "Images/common/noimage.png";
