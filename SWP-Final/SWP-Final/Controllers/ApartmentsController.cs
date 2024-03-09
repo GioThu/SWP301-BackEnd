@@ -273,6 +273,25 @@ namespace SWP_Final.Controllers
             return File(imageStream, mimeType);
         }
 
+        [HttpGet("GetApartmentsByBuildingID")]
+        public async Task<ActionResult<IEnumerable<Apartment>>> GetApartmentsByBuildingID(string buildingId)
+        {
+            // Lấy danh sách các căn hộ thuộc tòa nhà có buildingId tương ứng và sắp xếp theo diện tích từ thấp đến cao
+            var apartmentsByBuilding = await _context.Apartments
+                                                    .Where(a => a.BuildingId == buildingId)
+                                                    .OrderBy(a => a.Area)
+                                                    .ToListAsync();
+
+            if (apartmentsByBuilding.Count == 0)
+            {
+                return NotFound($"Không tìm thấy căn hộ nào cho tòa nhà có ID: {buildingId}");
+            }
+
+            return apartmentsByBuilding;
+        }
+
+
+
         private string valiablenoimage() => "Images/common/noimage.png";
 
         private string GetFilePath(string filename) => Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filename);

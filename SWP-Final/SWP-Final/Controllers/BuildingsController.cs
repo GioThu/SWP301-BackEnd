@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -106,34 +108,34 @@ namespace SWP_Final.Controllers
             return NoContent();
         }
 
-        // POST: api/Buildings
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Building>> PostBuilding(Building building)
-        {
-            if (_context.Buildings == null)
-            {
-                return Problem("Entity set 'RealEasteSWPContext.Buildings'  is null.");
-            }
-            _context.Buildings.Add(building);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (BuildingExists(building.BuildingId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //// POST: api/Buildings
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPost]
+        //public async Task<ActionResult<Building>> PostBuilding(Building building)
+        //{
+        //    if (_context.Buildings == null)
+        //    {
+        //        return Problem("Entity set 'RealEasteSWPContext.Buildings'  is null.");
+        //    }
+        //    _context.Buildings.Add(building);
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateException)
+        //    {
+        //        if (BuildingExists(building.BuildingId))
+        //        {
+        //            return Conflict();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return CreatedAtAction("GetBuilding", new { id = building.BuildingId }, building);
-        }
+        //    return CreatedAtAction("GetBuilding", new { id = building.BuildingId }, building);
+        //}
 
         // DELETE: api/Buildings/5
         [HttpDelete("{id}")]
@@ -353,36 +355,75 @@ namespace SWP_Final.Controllers
         [HttpPost("PostInfomationAndImage")]
         public async Task<IActionResult> PostInfoWithimageBuilding([FromForm] AddBuildingModel buildingModel)
         {
-            string fileNameImageBuildingModel = "Images/BuildingImages/" + buildingModel.FileImage.FileName;
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var building = new Building
-                {
-                    ProjectId = buildingModel.ProjectId,
-                    BuildingId = Guid.NewGuid().ToString(),
-                    Name = buildingModel.Name,
-                    NumberOfFloors = buildingModel.NumberOfFloor,
-                    NumberOfApartments = buildingModel.NumberOfApartment,
-                    Describe = buildingModel.Description,
-
-                };
-
-                if (buildingModel.FileImage.Length > 0)
-                {
-                    var path = GetFilePath(fileNameImageBuildingModel);
-                    using (var stream = System.IO.File.Create(path))
-                    {
-                        await buildingModel.FileImage.CopyToAsync(stream);
-                    }
-                    building.Images = fileNameImageBuildingModel;
-                }
-
-                _context.Buildings.Add(building);
-                await _context.SaveChangesAsync();
-
-                return Ok(building);
+                return BadRequest("Invalid model state.");
             }
-            return BadRequest("Invalid model state.");
+
+            // Kiểm tra tính hợp lệ của số lầu và số căn hộ trên mỗi tầng
+            if (buildingModel.NumberOfFloor <= 0 || buildingModel.NumberOfApartment <= 0)
+            {
+                return BadRequest("Number of floors and number of apartments per floor must be greater than zero.");
+            }
+
+            string fileNameImageBuildingModel = "Images/BuildingImages/" + buildingModel.FileImage.FileName;
+
+
+            var building = new Building
+            {
+                ProjectId = buildingModel.ProjectId,
+                BuildingId = Guid.NewGuid().ToString(),
+                Name = buildingModel.Name,
+                NumberOfFloors = buildingModel.NumberOfFloor,
+                NumberOfApartments = buildingModel.NumberOfApartment,
+                Describe = buildingModel.Description,
+                Images = fileNameImageBuildingModel
+            };
+
+            // Lưu hình ảnh của tòa nhà
+            if (buildingModel.FileImage.Length > 0)
+            {
+                var path = GetFilePath(fileNameImageBuildingModel);
+                using (var stream = System.IO.File.Create(path))
+                {
+                    await buildingModel.FileImage.CopyToAsync(stream);
+                }
+            }
+
+            _context.Buildings.Add(building);
+            await _context.SaveChangesAsync();
+
+            // Tạo các căn hộ tương ứng với số lầu và số lượng căn hộ mỗi lầu
+            for (int i = 1; i <= building.NumberOfFloors; i++)
+            {
+                for (int j = 1; j <= building.NumberOfApartments / building.NumberOfFloors; j++)
+                {
+                    double area = (j < 10) ? Convert.ToDouble($"{i}.0{j}") : Convert.ToDouble($"{i}.{j}");
+
+                    var apartment = new Apartment
+                    {
+                        ApartmentId = Guid.NewGuid().ToString(),
+                        BuildingId = building.BuildingId,
+                        ApartmentType = "Images/common/noimage.png",
+                        Area = area,
+                        AgencyId = null
+                    };
+                    _context.Apartments.Add(apartment);
+                }
+            }
+
+            await _context.SaveChangesAsync();
+
+            var options = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            };
+
+            // Serialize the Building object to JSON with the specified options
+            string jsonString = JsonSerializer.Serialize(building, options);
+
+            // Return the JSON string
+            return Ok();
         }
 
         [HttpGet("GetListBuildingDetails")]
@@ -426,6 +467,9 @@ namespace SWP_Final.Controllers
 
             return projectBuildingDetailsList;
         }
+
+
+
 
 
         [NonAction]
