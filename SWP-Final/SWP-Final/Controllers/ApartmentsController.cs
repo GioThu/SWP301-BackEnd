@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SWP_Final.Entities;
+using SWP_Final.Models;
 
 namespace SWP_Final.Controllers
 {
@@ -176,6 +177,74 @@ namespace SWP_Final.Controllers
             return filteredApartments;
         }
 
+        [HttpGet("ListApartmentByAgency")]
+        public async Task<ActionResult<IEnumerable<Apartment>>> ListApartmentsByAgency(string agencyId)
+        {
+            // Retrieve apartments associated with the specified agency
+            var apartmentsByAgency = await _context.Apartments
+                                                    .Where(a => a.AgencyId == agencyId)
+                                                    .ToListAsync();
+
+            if (apartmentsByAgency.Count == 0)
+            {
+                return NotFound($"No apartments found for agency with ID: {agencyId}");
+            }
+
+            return apartmentsByAgency;
+        }
+
+        [HttpPut("UpdateApartment")]
+        public async Task<IActionResult> UpdateApartment([FromForm] UpdateApartmentModel apartment)
+        {
+            var existingApartment = await _context.Apartments.FindAsync(apartment.ApartmentId);
+            if (existingApartment == null)
+            {
+                return NotFound();
+            }
+
+            if (apartment.ApartmentType != null && apartment.ApartmentType.Length > 0)
+            {
+                string filename = "Images/AsImage/" + apartment.ApartmentType.FileName;
+
+                var path = GetFilePath(filename);
+                using (var stream = System.IO.File.Create(path))
+                {
+                    await apartment.ApartmentType.CopyToAsync(stream);
+                }
+                existingApartment.ApartmentType = filename;
+            }
+
+            // Update the existing apartment's properties
+            existingApartment.NumberOfBedrooms = apartment.NumberOfBedrooms;
+            existingApartment.NumberOfBathrooms = apartment.NumberOfBathrooms;
+            existingApartment.Furniture = apartment.Furniture;
+            existingApartment.Price = apartment.Price;
+            existingApartment.Area = apartment.Area;
+            existingApartment.Description = apartment.Description;
+
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ApartmentExists(apartment.ApartmentId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        private string valiablenoimage() => "Images/common/noimage.png";
+
+        private string GetFilePath(string filename) => Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filename);
 
         private bool ApartmentExists(string id)
         {
