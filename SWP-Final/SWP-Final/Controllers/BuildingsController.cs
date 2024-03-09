@@ -351,7 +351,6 @@ namespace SWP_Final.Controllers
             }
         }
 
-        //POST: api/Buildings/PostImage
         [HttpPost("PostInfomationAndImage")]
         public async Task<IActionResult> PostInfoWithimageBuilding([FromForm] AddBuildingModel buildingModel)
         {
@@ -406,7 +405,8 @@ namespace SWP_Final.Controllers
                         BuildingId = building.BuildingId,
                         ApartmentType = "Images/common/noimage.png",
                         Area = area,
-                        AgencyId = null
+                        AgencyId = null,
+                        Status = null
                     };
                     _context.Apartments.Add(apartment);
                 }
@@ -467,6 +467,36 @@ namespace SWP_Final.Controllers
 
             return projectBuildingDetailsList;
         }
+
+
+        [HttpPost("DistributeFloor")]
+        public async Task<IActionResult> DistributeFloor(string buildingId, string agencyId, int floor)
+        {
+            var apartmentsInBuilding = await _context.Apartments
+        .Where(a => a.BuildingId == buildingId)
+        .ToListAsync();
+
+            if (apartmentsInBuilding == null || apartmentsInBuilding.Count == 0)
+            {
+                return NotFound($"Không tìm thấy căn hộ nào cho tòa nhà có ID: {buildingId}");
+            }
+
+            // Cập nhật AgencyId và Status cho từng căn hộ trong tòa nhà
+            foreach (var apartment in apartmentsInBuilding)
+            {
+                if (Math.Floor((decimal)apartment.Area) == floor) 
+                {
+                    apartment.AgencyId = agencyId;
+                    apartment.Status = "Distributed";
+                }
+            }
+
+            // Lưu thay đổi vào cơ sở dữ liệu
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
 
 
 
