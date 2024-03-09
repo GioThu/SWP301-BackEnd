@@ -242,6 +242,37 @@ namespace SWP_Final.Controllers
             return NoContent();
         }
 
+        //GET: api/Agencies/GetImage/
+        [HttpGet("GetApartmentImage/{id}")]
+        public async Task<IActionResult> GetApartmentImage(string id)
+        {
+            var apartment = await _context.Apartments.FindAsync(id);
+            if (apartment == null )
+            {
+                return NotFound("The image does not exist or has been deleted.");
+            }
+
+            var path = GetFilePath(apartment.ApartmentType);
+            if (!System.IO.File.Exists(path))
+            {
+                return NotFound("File does not exist.");
+            }
+
+            var imageStream = System.IO.File.OpenRead(path);
+
+
+            var mimeType = "image/jpeg";
+            if (Path.GetExtension(path).ToLower() == ".png")
+            {
+                mimeType = "image/png";
+            }
+            else if (Path.GetExtension(path).ToLower() == ".gif")
+            {
+                mimeType = "image/gif";
+            }
+            return File(imageStream, mimeType);
+        }
+
         private string valiablenoimage() => "Images/common/noimage.png";
 
         private string GetFilePath(string filename) => Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filename);
