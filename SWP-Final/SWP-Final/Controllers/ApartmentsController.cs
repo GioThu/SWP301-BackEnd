@@ -221,6 +221,7 @@ namespace SWP_Final.Controllers
             existingApartment.Price = apartment.Price;
             existingApartment.Area = apartment.Area;
             existingApartment.Description = apartment.Description;
+            existingApartment.Status = "Updated";
 
 
             try
@@ -285,6 +286,24 @@ namespace SWP_Final.Controllers
             if (apartmentsByBuilding.Count == 0)
             {
                 return NotFound($"Không tìm thấy căn hộ nào cho tòa nhà có ID: {buildingId}");
+            }
+
+            return apartmentsByBuilding;
+        }
+
+        [HttpGet("GetApartmentsByBuildingIDForBooking")]
+        public async Task<ActionResult<IEnumerable<Apartment>>> GetApartmentsByBuildingIDForBooking(string buildingId)
+        {
+            // Lấy danh sách các căn hộ thuộc tòa nhà có buildingId tương ứng và sắp xếp theo diện tích từ thấp đến cao,
+            // chỉ lấy những căn hộ có trạng thái là "Updated"
+            var apartmentsByBuilding = await _context.Apartments
+                                                    .Where(a => a.BuildingId == buildingId && a.Status == "Updated")
+                                                    .OrderBy(a => a.Area)
+                                                    .ToListAsync();
+
+            if (apartmentsByBuilding.Count == 0)
+            {
+                return NotFound($"Không tìm thấy căn hộ nào cho tòa nhà có ID: {buildingId} và trạng thái là 'Updated'");
             }
 
             return apartmentsByBuilding;
