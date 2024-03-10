@@ -279,6 +279,22 @@ namespace SWP_Final.Controllers
             return apartmentsByBuilding;
         }
 
+        [HttpGet("GetBookingByApartmentId/{apartmentId}")]
+        public async Task<ActionResult<IEnumerable<Booking>>> GetBookingByApartmentId(string apartmentId)
+        {
+            // Query the database for bookings related to the specified apartment id that are active
+            var activeBookings = await _context.Bookings
+                                                .Where(b => b.ApartmentId == apartmentId && b.Status == "Active")
+                                                .ToListAsync();
+
+            if (activeBookings.Count == 0)
+            {
+                return NotFound($"No active bookings found for apartment with ID: {apartmentId}");
+            }
+
+            return activeBookings;
+        }
+
 
 
         private string valiablenoimage() => "Images/common/noimage.png";

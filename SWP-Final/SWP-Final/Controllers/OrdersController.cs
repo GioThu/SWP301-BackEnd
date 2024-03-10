@@ -133,5 +133,76 @@ namespace SWP_Final.Controllers
         {
             return (_context.Orders?.Any(e => e.OrderId == id)).GetValueOrDefault();
         }
+
+        
+        
+            [HttpPost("CreateOrderFromBooking")]
+            public async Task<IActionResult> CreateOrderFromBooking(string bookingId)
+            {
+                // Find the booking
+                var booking = await _context.Bookings.FindAsync(bookingId);
+
+                if (booking == null)
+                {
+                    return NotFound($"Booking with ID {bookingId} not found.");
+                }
+
+                // Retrieve all bookings with the same apartmentId as the one in the provided booking
+                var bookingsToClose = await _context.Bookings
+                    .Where(b => b.ApartmentId == booking.ApartmentId && b.Status != "Closed")
+                    .ToListAsync();
+
+                // Close each booking found
+                foreach (var b in bookingsToClose)
+                {
+                    b.Status = "Closed";
+                }
+
+                var apartment = await _context.Apartments.FindAsync(booking.ApartmentId);
+
+                if (apartment == null)
+                {
+                    return NotFound($"Apartment with ID {booking.ApartmentId} not found.");
+                }
+
+                // Change the status of the apartment to "Sold"
+                apartment.Status = "Sold";
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException)
+                {
+                    return StatusCode(500, "Failed to update bookings status.");
+                }
+
+                // Create an order from the provided booking
+                var order = new Order
+                {
+                    OrderId = Guid.NewGuid().ToString(), // Generate a new OrderId
+                    Date = booking.Date,
+                    AgencyId = booking.AgencyId,
+                    ApartmentId = booking.ApartmentId,
+                    Status = "Open", // Assuming newly created order is Open
+                    TotalAmount = null // You need to set the total amount accordingly
+                };
+
+                // Add the order to the context
+                _context.Orders.Add(order);
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException)
+                {
+                    return StatusCode(500, "Failed to create order.");
+                }
+
+                return Ok("Order created successfully.");
+            }
+        }
     }
-}
+
+
