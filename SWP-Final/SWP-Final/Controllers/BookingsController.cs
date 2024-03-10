@@ -129,6 +129,21 @@ namespace SWP_Final.Controllers
             return NoContent();
         }
 
+        [HttpGet("GetAllBookingByApartmentID")]
+        public async Task<ActionResult<IEnumerable<Booking>>> GetAllBookingByApartmentID(string apartmentId)
+        {
+            var bookings = await _context.Bookings
+                                        .Where(b => b.ApartmentId == apartmentId)
+                                        .ToListAsync();
+
+            if (bookings == null || bookings.Count == 0)
+            {
+                return NotFound("No bookings found for the specified apartment.");
+            }
+
+            return bookings;
+        }
+
         private bool BookingExists(string id)
         {
             return (_context.Bookings?.Any(e => e.BookingId == id)).GetValueOrDefault();
