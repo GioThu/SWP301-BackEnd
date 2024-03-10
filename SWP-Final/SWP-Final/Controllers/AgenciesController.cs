@@ -78,36 +78,6 @@ namespace SWP_Final.Controllers
             return agency;
         }
 
-        // PUT: api/Agencies/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAgency(string id, Agency agency)
-        {
-            if (id != agency.AgencyId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(agency).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AgencyExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
 
         // POST: api/Agencies
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -454,9 +424,25 @@ namespace SWP_Final.Controllers
             return orders;
         }
 
+        [HttpGet("GetAgencyByUserID/{userId}")]
+        public async Task<ActionResult<IEnumerable<Agency>>> GetAgencyByUserID(string userId)
+        {
+            // Retrieve agencies associated with the specified userId
+            var agencies = await _context.Agencies
+                                         .Where(a => a.UserId == userId)
+                                         .ToListAsync();
+
+            if (agencies == null || !agencies.Any())
+            {
+                return NotFound("No agencies found for the specified user.");
+            }
+
+            return agencies;
+        }
 
 
-[HttpGet("GetAgencyNames")]
+
+        [HttpGet("GetAgencyNames")]
 public async Task<ActionResult<IEnumerable<GetAgencyNameModel>>> GetAgencyNames()
 {
     if (_context.Agencies == null)

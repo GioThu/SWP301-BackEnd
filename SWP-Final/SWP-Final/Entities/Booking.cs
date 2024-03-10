@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace SWP_Final.Entities
 {
@@ -13,6 +14,8 @@ namespace SWP_Final.Entities
         public string? Status { get; set; }
 
         public virtual Agency? Agency { get; set; }
+
+        [JsonIgnore]
         public virtual Apartment? Apartment { get; set; }
         public virtual Customer? Customer { get; set; }
     }

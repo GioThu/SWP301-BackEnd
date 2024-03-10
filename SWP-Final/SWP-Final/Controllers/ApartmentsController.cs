@@ -50,36 +50,6 @@ namespace SWP_Final.Controllers
             return apartment;
         }
 
-        // PUT: api/Apartments/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutApartment(string id, Apartment apartment)
-        {
-            if (id != apartment.ApartmentId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(apartment).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ApartmentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
 
         // POST: api/Apartments
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

@@ -339,6 +339,22 @@ namespace SWP_Final.Controllers
             }
         }
 
+        [HttpGet("GetCustomerByUserID/{userId}")]
+        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomerByUserID(string userId)
+        {
+            // Retrieve customers associated with the specified userId
+            var customers = await _context.Customers
+                                         .Where(c => c.UserId == userId)
+                                         .ToListAsync();
+
+            if (customers == null || !customers.Any())
+            {
+                return NotFound("No customers found for the specified user.");
+            }
+
+            return customers;
+        }
+
 
         [NonAction]
         private string valiablenoimage() => "Images/common/noimage.png";

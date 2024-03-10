@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,10 +26,10 @@ namespace SWP_Final.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Booking>>> GetBookings()
         {
-          if (_context.Bookings == null)
-          {
-              return NotFound();
-          }
+            if (_context.Bookings == null)
+            {
+                return NotFound();
+            }
             return await _context.Bookings.ToListAsync();
         }
 
@@ -35,10 +37,10 @@ namespace SWP_Final.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Booking>> GetBooking(string id)
         {
-          if (_context.Bookings == null)
-          {
-              return NotFound();
-          }
+            if (_context.Bookings == null)
+            {
+                return NotFound();
+            }
             var booking = await _context.Bookings.FindAsync(id);
 
             if (booking == null)
@@ -49,65 +51,6 @@ namespace SWP_Final.Controllers
             return booking;
         }
 
-        // PUT: api/Bookings/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutBooking(string id, Booking booking)
-        {
-            if (id != booking.BookingId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(booking).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BookingExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Bookings
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Booking>> PostBooking(Booking booking)
-        {
-          if (_context.Bookings == null)
-          {
-              return Problem("Entity set 'RealEasteSWPContext.Bookings'  is null.");
-          }
-            _context.Bookings.Add(booking);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (BookingExists(booking.BookingId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetBooking", new { id = booking.BookingId }, booking);
-        }
 
         // DELETE: api/Bookings/5
         [HttpDelete("{id}")]
@@ -144,9 +87,69 @@ namespace SWP_Final.Controllers
             return bookings;
         }
 
+        [HttpPost]
+        public async Task<ActionResult<Booking>> PostBooking(string customerId, string apartmentId)
+        {
+            if (BookingExistsForApartment(customerId, apartmentId))
+            {
+                return Conflict("A booking with the same Customer and Apartment already exists.");
+            }
+
+            // Fetch AgencyId associated with the Apartment
+            var apartment = await _context.Apartments.FindAsync(apartmentId);
+            if (apartment == null)
+            {
+                return NotFound("Apartment not found.");
+            }
+            string agencyId = apartment.AgencyId;
+
+            // Create a new Booking object with automatically generated BookingId
+            var booking = new Booking
+            {
+                CustomerId = customerId,
+                ApartmentId = apartmentId,
+                AgencyId = agencyId,
+                Status = "Active", // Set status to "Active"
+                BookingId = Guid.NewGuid().ToString(), // Generate a unique BookingID
+                Date = DateTime.Now
+            };
+
+            _context.Bookings.Add(booking);
+            try
+            {
+                var options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve // Preserve reference to avoid object cycles
+                };
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (BookingExists(booking.BookingId))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtAction("GetBooking", new { id = booking.BookingId }, booking);
+        }
+
+
+        // Method to check if a booking with the same CustomerId and ApartmentId already exists
+        private bool BookingExistsForApartment(string customerId, string apartmentId)
+        {
+            return _context.Bookings.Any(b => b.CustomerId == customerId && b.ApartmentId == apartmentId);
+        }
+
+        // Method to check if a booking with the given BookingId already exists
         private bool BookingExists(string id)
         {
             return (_context.Bookings?.Any(e => e.BookingId == id)).GetValueOrDefault();
         }
+
     }
 }
