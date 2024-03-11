@@ -29,6 +29,30 @@ namespace SWP_Final.Controllers
           {
               return NotFound();
           }
+            var apartmentlist = await _context.Apartments.ToListAsync();
+
+            // Check if the agency list is empty
+            if (apartmentlist.Count == 0)
+            {
+                return NotFound("No agencies found.");
+            }
+
+            bool changesMade = false;
+            foreach (var apartment in apartmentlist)
+            {
+                if (apartment.ApartmentType == null || apartment.ApartmentType.Length == 0)
+                {
+                    apartment.ApartmentType = "Images/common/noimage.png"; // Update with your default image path
+                    changesMade = true;
+                }
+            }
+
+            // Save changes if any agency was updated
+            if (changesMade)
+            {
+                await _context.SaveChangesAsync();
+
+            }
             return await _context.Apartments.ToListAsync();
         }
 
@@ -337,9 +361,53 @@ namespace SWP_Final.Controllers
         }
 
 
+        //POST: api/Apartment/UploadInfoWithImage
+        [HttpPost("UploadInformationWithImage/{id}")]
+        public async Task<IActionResult> UploadInformationWithImage([FromForm] ApartmentModel apartmentModel, string id)
+        {
+            int count = 0;
+            var apartmentlist = await _context.Apartments.ToListAsync();
+            string fileNameImageApartmentModel = $"Images/AsImage/{apartmentModel.ApartmentType.FileName}";
+            var apartment = await _context.Apartments.FindAsync(id);
+            string fileNameImageApartment = apartment.ApartmentType;
+            if (apartment == null)
+            {
+                return NotFound("apartment not found");
+            }
+            foreach (var apartmentimage in apartmentlist)
+            {
+                if (apartmentimage.ApartmentType == fileNameImageApartment)
+                {
+                    count++;
+                }
+            }
+
+            var path = GetFilePath(fileNameImageApartment);
+            if (System.IO.File.Exists(path))
+            {
+                if (fileNameImageApartment != valiablenoimage() && count == 0)
+                {
+                    System.IO.File.Delete(path);
+                }
+
+            }
+            var filepath = GetFilePath(fileNameImageApartmentModel);
+            using (var stream = System.IO.File.Create(filepath))
+            {
+                await apartmentModel.ApartmentType.CopyToAsync(stream);
+            }
+            apartment.Description = apartmentModel.Description;
+            apartment.ApartmentType = fileNameImageApartmentModel;
+            
 
 
+            await _context.SaveChangesAsync();
+            return Ok(apartment);
+        }
 
+
+        [NonAction]
+        
         private string valiablenoimage() => "Images/common/noimage.png";
 
         private string GetFilePath(string filename) => Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filename);
