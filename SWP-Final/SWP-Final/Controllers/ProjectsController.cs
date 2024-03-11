@@ -128,6 +128,27 @@ namespace SWP_Final.Controllers
 
             return NoContent();
         }
+        [HttpGet("GetNumberOfProjectAndNumberOfUser")]
+        public async Task<IActionResult> GetNumberOfProjectAndNumberOfUser()
+        {
+            try
+            {
+                var numberOfProjects = await _context.Projects.CountAsync();
+                var numberOfUsers = await _context.Users.CountAsync();
+
+                var result = new
+                {
+                    NumberOfProjects = numberOfProjects,
+                    NumberOfUsers = numberOfUsers
+                };
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         private bool ProjectExists(string id)
         {
