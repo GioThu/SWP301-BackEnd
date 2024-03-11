@@ -405,6 +405,33 @@ namespace SWP_Final.Controllers
             return Ok(apartment);
         }
 
+        [HttpGet("GetAllAgencyAndNumberOfApartment")]
+        public async Task<ActionResult<IEnumerable<AgencyApartmentCountModel>>> GetAllAgencyAndNumberOfApartment()
+        {
+            var agenciesWithApartmentCounts = await _context.Agencies
+                                                .Select(agency => new
+                                                {
+                                                    Agency = agency,
+                                                    ApartmentCount = _context.Apartments
+                                                                        .Count(apartment => apartment.AgencyId == agency.AgencyId)
+                                                })
+                                                .Select(result => new AgencyApartmentCountModel
+                                                {
+                                                    AgencyId = result.Agency.AgencyId,
+                                                    AgencyFirstName = result.Agency.FirstName,
+                                                    AgencyLastName = result.Agency.LastName,
+                                                    NumberOfApartments = result.ApartmentCount
+                                                })
+                                                .ToListAsync();
+
+            return agenciesWithApartmentCounts;
+        }
+
+
+
+
+
+
 
         [NonAction]
         
