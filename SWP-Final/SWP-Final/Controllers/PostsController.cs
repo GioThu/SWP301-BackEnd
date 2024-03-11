@@ -197,8 +197,14 @@ namespace SWP_Final.Controllers
             {
                 var post = new Post
                 {
-                    PostId = postModel.PostId,
-
+                    PostId = Guid.NewGuid().ToString(),
+                    SalesOpeningDate = postModel.SalesOpeningDate,
+                    SalesClosingDate = postModel.SalesClosingDate,
+                    PostDate = DateTime.Now,
+                    Description = postModel.Description,
+                    PriorityMethod = postModel.PriorityMethod,
+                    BuildingId = postModel.BuildingId,
+                    AgencyId = postModel.AgencyId,
 
                 };
 
@@ -287,9 +293,12 @@ namespace SWP_Final.Controllers
             {
                 await postModel.FileImage.CopyToAsync(stream);
             }
+            post.SalesOpeningDate = postModel.SalesOpeningDate;
+            post.SalesClosingDate = postModel.SalesClosingDate;
             post.Description = postModel.Description;
             post.PriorityMethod = postModel.PriorityMethod;
             post.Images = fileNameImagePostModel;
+            post.BuildingId = postModel.BuildingId;
 
 
             await _context.SaveChangesAsync();
