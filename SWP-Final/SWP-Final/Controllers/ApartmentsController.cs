@@ -294,6 +294,49 @@ namespace SWP_Final.Controllers
 
             return activeBookings;
         }
+        [HttpGet("GetListBuildingIdByAgencyId/{id}")]
+        public async Task<ActionResult<IEnumerable<string>>> GetListBuildingIdByAgencyId(string id)
+        {
+            if (_context.Apartments == null)
+            {
+                return NotFound();
+            }
+
+            // Lấy danh sách duy nhất các BuildingID dựa trên AgencyId
+            var buildingIds = await _context.Apartments
+                                            .Where(a => a.AgencyId == id)
+                                            .Select(a => a.BuildingId) // Chọn ra trường BuildingId
+                                            .Distinct() // Loại bỏ các giá trị trùng lặp
+                                            .ToListAsync();
+
+            if (buildingIds == null || buildingIds.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return buildingIds; // Trả về danh sách các BuildingID duy nhất
+        }
+
+
+        [HttpGet("GetApartmentsByAgencyIdAndBuildingId/{agencyId}/{buildingId}")]
+        public async Task<ActionResult<IEnumerable<Apartment>>> GetApartmentsByAgencyIdAndBuildingId(string agencyId, string buildingId)
+        {
+            // Lấy danh sách các căn hộ thuộc tòa nhà có buildingId và agencyId tương ứng,
+            // loại trừ các căn hộ có trạng thái là "Sold", và sắp xếp theo diện tích từ thấp đến cao
+            var apartmentsByBuildingAndAgency = await _context.Apartments
+                                                    .Where(a => a.BuildingId == buildingId && a.AgencyId == agencyId && a.Status != "Sold")
+                                                    .OrderBy(a => a.Area)
+                                                    .ToListAsync();
+
+            if (apartmentsByBuildingAndAgency.Count == 0)
+            {
+                return NotFound(new { Message = $"Không tìm thấy căn hộ nào phù hợp cho tòa nhà có ID: {buildingId} và đại lý có ID: {agencyId} hoặc tất cả đều đã được bán." });
+            }
+
+            return apartmentsByBuildingAndAgency;
+        }
+
+
 
 
 

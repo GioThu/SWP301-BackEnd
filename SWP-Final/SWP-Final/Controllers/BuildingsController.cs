@@ -405,6 +405,7 @@ namespace SWP_Final.Controllers
                         BuildingId = building.BuildingId,
                         ApartmentType = "Images/common/noimage.png",
                         Area = area,
+                        FloorNumber = i,
                         AgencyId = null,
                         Status = null
                     };
