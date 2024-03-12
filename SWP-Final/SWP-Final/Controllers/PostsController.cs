@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -347,6 +349,23 @@ namespace SWP_Final.Controllers
             {
                 return NotFound("File does not exist.");
             }
+        }
+
+
+
+
+
+
+        [HttpGet("ListPostByProjectID/{projectId}")]
+        public async Task<ActionResult<IEnumerable<Post>>> ListPostByProjectID(string projectId)
+        {
+            // Retrieve all posts for the specified projectId and order them by PostDate
+            var posts = await _context.Posts
+                .Where(post => post.Building != null && post.Building.ProjectId == projectId)
+                .OrderByDescending(post => post.PostDate)
+                .ToListAsync();
+
+            return posts;
         }
 
 

@@ -413,7 +413,8 @@ namespace SWP_Final.Controllers
                                                 {
                                                     Agency = agency,
                                                     ApartmentCount = _context.Apartments
-                                                                        .Count(apartment => apartment.AgencyId == agency.AgencyId)
+                                                                        .Where(apartment => apartment.AgencyId == agency.AgencyId && apartment.Status != "Sold")
+                                                                        .Count()
                                                 })
                                                 .Select(result => new AgencyApartmentCountModel
                                                 {
@@ -426,6 +427,7 @@ namespace SWP_Final.Controllers
 
             return agenciesWithApartmentCounts;
         }
+
 
 
 
