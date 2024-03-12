@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gSXEorN+qnyKjMBxFJb4Uf9CrcpDMcyEmTUq9jrUAOs=",
+  "Hash": "m5H8jPmQw/JnSe90WROY865GmAtAhxqxMzz5ntldVnQ=",
   "Source": "SWP-Final",
   "BasePath": "_content/SWP-Final",
   "Mode": "Default",
@@ -338,6 +338,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-16 235847.png"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-20 094944.png",
+      "SourceId": "SWP-Final",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "BasePath": "_content/SWP-Final",
+      "RelativePath": "Images/BuildingImages/Screenshot 2024-01-20 094944.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-20 094944.png"
     },
     {
       "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\common\\noimage.png",

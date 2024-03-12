@@ -397,14 +397,21 @@ namespace SWP_Final.Controllers
             {
                 for (int j = 1; j <= building.NumberOfApartments / building.NumberOfFloors; j++)
                 {
-                    double area = (j < 10) ? Convert.ToDouble($"{i}.0{j}") : Convert.ToDouble($"{i}.{j}");
-
+                    string apartmentId;
+                    if (j < 10)
+                    {
+                        apartmentId = $"{building.BuildingId}?{i}0{j}";
+                    }
+                    else
+                    {
+                        apartmentId = $"{building.BuildingId}?{i}{j}";
+                    }
                     var apartment = new Apartment
                     {
-                        ApartmentId = Guid.NewGuid().ToString(),
+                        ApartmentId = apartmentId,
                         BuildingId = building.BuildingId,
                         ApartmentType = "Images/common/noimage.png",
-                        Area = area,
+                        Area = null,
                         FloorNumber = i,
                         AgencyId = null,
                         Status = null
@@ -485,7 +492,7 @@ namespace SWP_Final.Controllers
             // Cập nhật AgencyId và Status cho từng căn hộ trong tòa nhà
             foreach (var apartment in apartmentsInBuilding)
             {
-                if (Math.Floor((decimal)apartment.Area) == floor) 
+                if (apartment.FloorNumber == floor) 
                 {
                     apartment.AgencyId = agencyId;
                     apartment.Status = "Distributed";

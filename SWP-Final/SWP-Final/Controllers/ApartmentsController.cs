@@ -274,7 +274,7 @@ namespace SWP_Final.Controllers
             // Lấy danh sách các căn hộ thuộc tòa nhà có buildingId tương ứng và sắp xếp theo diện tích từ thấp đến cao
             var apartmentsByBuilding = await _context.Apartments
                                                     .Where(a => a.BuildingId == buildingId)
-                                                    .OrderBy(a => a.Area)
+                                                    .OrderBy(a => a.ApartmentId)
                                                     .ToListAsync();
 
             if (apartmentsByBuilding.Count == 0)
@@ -292,7 +292,7 @@ namespace SWP_Final.Controllers
             // chỉ lấy những căn hộ có trạng thái là "Updated"
             var apartmentsByBuilding = await _context.Apartments
                                                     .Where(a => a.BuildingId == buildingId && a.Status == "Updated")
-                                                    .OrderBy(a => a.Area)
+                                                    .OrderBy(a => a.ApartmentId)
                                                     .ToListAsync();
 
             if (apartmentsByBuilding.Count == 0)
@@ -349,7 +349,7 @@ namespace SWP_Final.Controllers
             // loại trừ các căn hộ có trạng thái là "Sold", và sắp xếp theo diện tích từ thấp đến cao
             var apartmentsByBuildingAndAgency = await _context.Apartments
                                                     .Where(a => a.BuildingId == buildingId && a.AgencyId == agencyId && a.Status != "Sold")
-                                                    .OrderBy(a => a.Area)
+                                                    .OrderBy(a => a.ApartmentId)
                                                     .ToListAsync();
 
             if (apartmentsByBuildingAndAgency.Count == 0)
