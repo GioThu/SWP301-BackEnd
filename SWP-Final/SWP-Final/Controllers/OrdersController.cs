@@ -134,75 +134,131 @@ namespace SWP_Final.Controllers
             return (_context.Orders?.Any(e => e.OrderId == id)).GetValueOrDefault();
         }
 
-        
-        
-            [HttpPost("CreateOrderFromBooking")]
-            public async Task<IActionResult> CreateOrderFromBooking(string bookingId)
+
+
+        [HttpPost("CreateOrderFromBooking")]
+        public async Task<IActionResult> CreateOrderFromBooking(string bookingId)
+        {
+            // Find the booking
+            var booking = await _context.Bookings.FindAsync(bookingId);
+
+            if (booking == null)
             {
-                // Find the booking
-                var booking = await _context.Bookings.FindAsync(bookingId);
+                return NotFound($"Booking with ID {bookingId} not found.");
+            }
 
-                if (booking == null)
-                {
-                    return NotFound($"Booking with ID {bookingId} not found.");
-                }
+            // Retrieve all bookings with the same apartmentId as the one in the provided booking
+            var bookingsToClose = await _context.Bookings
+                .Where(b => b.ApartmentId == booking.ApartmentId && b.Status == "Active")
+                .ToListAsync();
 
-                // Retrieve all bookings with the same apartmentId as the one in the provided booking
-                var bookingsToClose = await _context.Bookings
-                    .Where(b => b.ApartmentId == booking.ApartmentId && b.Status != "Closed")
-                    .ToListAsync();
-
-                // Close each booking found
-                foreach (var b in bookingsToClose)
+            // Close each booking found except the current one
+            foreach (var b in bookingsToClose)
+            {
+                if (b.BookingId != bookingId)
                 {
                     b.Status = "Closed";
                 }
-
-                var apartment = await _context.Apartments.FindAsync(booking.ApartmentId);
-
-                if (apartment == null)
+                else
                 {
-                    return NotFound($"Apartment with ID {booking.ApartmentId} not found.");
+                    b.Status = "Complete"; // Change the status of the current booking to "Complete"
                 }
-
-                // Change the status of the apartment to "Sold"
-                apartment.Status = "Sold";
-
-                try
-                {
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateException)
-                {
-                    return StatusCode(500, "Failed to update bookings status.");
-                }
-
-                // Create an order from the provided booking
-                var order = new Order
-                {
-                    OrderId = Guid.NewGuid().ToString(), // Generate a new OrderId
-                    Date = booking.Date,
-                    AgencyId = booking.AgencyId,
-                    ApartmentId = booking.ApartmentId,
-                    Status = "Open", // Assuming newly created order is Open
-                    TotalAmount = null // You need to set the total amount accordingly
-                };
-
-                // Add the order to the context
-                _context.Orders.Add(order);
-
-                try
-                {
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateException)
-                {
-                    return StatusCode(500, "Failed to create order.");
-                }
-
-                return Ok("Order created successfully.");
             }
+
+            var apartment = await _context.Apartments.FindAsync(booking.ApartmentId);
+
+            if (apartment == null)
+            {
+                return NotFound($"Apartment with ID {booking.ApartmentId} not found.");
+            }
+
+            // Change the status of the apartment to "Sold"
+            apartment.Status = "Sold";
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                return StatusCode(500, "Failed to update bookings status.");
+            }
+
+            // Create an order from the provided booking
+            var order = new Order
+            {
+                OrderId = Guid.NewGuid().ToString(), // Generate a new OrderId
+                Date = booking.Date,
+                AgencyId = booking.AgencyId,
+                ApartmentId = booking.ApartmentId,
+                Status = "Open", // Assuming newly created order is Open
+                TotalAmount = apartment.Price
+            };
+
+            // Add the order to the context
+            _context.Orders.Add(order);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                return StatusCode(500, "Failed to create order.");
+            }
+
+            return Ok("Order created successfully.");
         }
+
+        [HttpDelete("DeleteOrderAndHealingBooking")]
+        public async Task<IActionResult> DeleteOrderAndHealingBooking(string bookingId)
+        {
+            var booking = await _context.Bookings.FindAsync(bookingId);
+
+            if (booking == null)
+            {
+                return NotFound($"Booking with ID {bookingId} not found.");
+            }
+
+            var apartment = await _context.Apartments.FindAsync(booking.ApartmentId);
+
+            if (apartment == null)
+            {
+                return NotFound($"Apartment with ID {booking.ApartmentId} not found.");
+            }
+
+            var ordersToDelete = await _context.Orders
+                .Where(o => o.ApartmentId == booking.ApartmentId)
+                .ToListAsync();
+
+            var bookingsToUpdate = await _context.Bookings
+                .Where(b => b.ApartmentId == booking.ApartmentId && (b.Status == "Closed" || b.Status == "Complete"))
+                .ToListAsync();
+
+            foreach (var b in bookingsToUpdate)
+            {
+                b.Status = "Active"; // Chuyển booking thành "Active"
+            }
+
+            apartment.Status = "Updated"; // Chuyển trạng thái của apartment thành "Updated"
+
+            try
+            {
+                // Xóa các đơn đặt hàng của apartment
+                _context.Orders.RemoveRange(ordersToDelete);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                return StatusCode(500, "Failed to delete orders.");
+            }
+
+            return Ok("Orders deleted successfully.");
+        }
+
+
+
     }
+}
 
 

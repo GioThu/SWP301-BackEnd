@@ -76,7 +76,7 @@ namespace SWP_Final.Controllers
         public async Task<ActionResult<IEnumerable<Booking>>> GetAllBookingByApartmentID(string apartmentId)
         {
             var bookings = await _context.Bookings
-                                        .Where(b => b.ApartmentId == apartmentId)
+                                        .Where(b => b.ApartmentId == apartmentId && (b.Status == "Active" || b.Status == "Complete"))
                                         .ToListAsync();
 
             if (bookings == null || bookings.Count == 0)
@@ -86,6 +86,45 @@ namespace SWP_Final.Controllers
 
             return bookings;
         }
+
+        [HttpPut("CompleteBooking/{id}")]
+        public async Task<IActionResult> CompleteBooking(string id)
+        {
+            var booking = await _context.Bookings.FindAsync(id);
+            if (booking == null)
+            {
+                return NotFound("Booking not found.");
+            }
+
+            // Kiểm tra xem trạng thái hiện tại có phải là "Active" hay không
+            if (booking.Status != "Active")
+            {
+                return BadRequest("The booking is not currently active.");
+            }
+
+            // Cập nhật trạng thái thành "Complete"
+            booking.Status = "Complete";
+
+            // Lưu các thay đổi vào cơ sở dữ liệu
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BookingExists(booking.BookingId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
 
         [HttpPost]
         public async Task<ActionResult<Booking>> PostBooking(string customerId, string apartmentId)
