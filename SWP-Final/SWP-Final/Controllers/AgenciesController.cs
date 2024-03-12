@@ -425,19 +425,18 @@ namespace SWP_Final.Controllers
         }
 
         [HttpGet("GetAgencyByUserID/{userId}")]
-        public async Task<ActionResult<IEnumerable<Agency>>> GetAgencyByUserID(string userId)
+        public async Task<ActionResult<Agency>> GetAgencyByUserID(string userId)
         {
-            // Retrieve agencies associated with the specified userId
-            var agencies = await _context.Agencies
-                                         .Where(a => a.UserId == userId)
-                                         .ToListAsync();
+            // Retrieve the agency associated with the specified userId
+            var agency = await _context.Agencies
+                                        .FirstOrDefaultAsync(a => a.UserId == userId);
 
-            if (agencies == null || !agencies.Any())
+            if (agency == null)
             {
-                return NotFound("No agencies found for the specified user.");
+                return NotFound("No agency found for the specified user.");
             }
 
-            return agencies;
+            return agency;
         }
 
 

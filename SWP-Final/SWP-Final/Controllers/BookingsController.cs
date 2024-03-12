@@ -131,7 +131,7 @@ namespace SWP_Final.Controllers
         {
             if (BookingExistsForApartment(customerId, apartmentId))
             {
-                return Conflict("A booking with the same Customer and Apartment already exists.");
+                return Conflict(new { massage = "A booking with the same Customer and Apartment already exists." });
             }
 
             // Fetch AgencyId associated with the Apartment

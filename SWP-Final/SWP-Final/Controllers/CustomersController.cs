@@ -340,20 +340,20 @@ namespace SWP_Final.Controllers
         }
 
         [HttpGet("GetCustomerByUserID/{userId}")]
-        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomerByUserID(string userId)
+        public async Task<ActionResult<Customer>> GetCustomerByUserID(string userId)
         {
-            // Retrieve customers associated with the specified userId
-            var customers = await _context.Customers
-                                         .Where(c => c.UserId == userId)
-                                         .ToListAsync();
+            // Retrieve the customer associated with the specified userId
+            var customer = await _context.Customers
+                                        .FirstOrDefaultAsync(c => c.UserId == userId);
 
-            if (customers == null || !customers.Any())
+            if (customer == null)
             {
-                return NotFound("No customers found for the specified user.");
+                return NotFound("No customer found for the specified user.");
             }
 
-            return customers;
+            return customer;
         }
+
 
 
         [NonAction]
