@@ -187,11 +187,11 @@ namespace SWP_Final.Controllers
             // Create an order from the provided booking
             var order = new Order
             {
-                OrderId = Guid.NewGuid().ToString(), // Generate a new OrderId
+                OrderId = Guid.NewGuid().ToString(), 
                 Date = booking.Date,
                 AgencyId = booking.AgencyId,
                 ApartmentId = booking.ApartmentId,
-                Status = "Open", // Assuming newly created order is Open
+                Status = "Open", 
                 TotalAmount = apartment.Price
             };
 
