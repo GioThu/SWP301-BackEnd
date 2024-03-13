@@ -72,7 +72,7 @@ namespace SWP_Final.Controllers
             return NoContent();
         }
 
-        [HttpGet("GetAllBookingByApartmentID")]
+        [HttpGet("GetAllBookingByApartmentID/{apartmentId}")]
         public async Task<ActionResult<IEnumerable<Booking>>> GetAllBookingByApartmentID(string apartmentId)
         {
             var bookings = await _context.Bookings
