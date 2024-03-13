@@ -348,7 +348,7 @@ namespace SWP_Final.Controllers
             // Lấy danh sách các căn hộ thuộc tòa nhà có buildingId và agencyId tương ứng,
             // loại trừ các căn hộ có trạng thái là "Sold", và sắp xếp theo diện tích từ thấp đến cao
             var apartmentsByBuildingAndAgency = await _context.Apartments
-                                                    .Where(a => a.BuildingId == buildingId && a.AgencyId == agencyId && a.Status != "Sold")
+                                                    .Where(a => a.BuildingId == buildingId && a.AgencyId == agencyId)
                                                     .OrderBy(a => a.ApartmentId)
                                                     .ToListAsync();
 
@@ -422,7 +422,8 @@ namespace SWP_Final.Controllers
                                                     AgencyFirstName = result.Agency.FirstName,
                                                     AgencyLastName = result.Agency.LastName,
                                                     NumberOfApartments = result.ApartmentCount
-                                                })
+                                                
+                                               })
                                                 .ToListAsync();
 
             return agenciesWithApartmentCounts;

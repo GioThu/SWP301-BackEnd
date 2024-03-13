@@ -301,6 +301,49 @@ namespace SWP_Final.Controllers
             return ordersHistory;
         }
 
+        [HttpGet("GetAllOderByCustomerId/{customerId}")]
+        public async Task<ActionResult<IEnumerable<OrdersHistoryModel>>> GetAllOderByCustomerId(string customerId)
+        {
+            // Retrieve bookings with the specified customerId and status "Complete"
+            var completeBookings = await _context.Bookings
+                                                .Where(b => b.CustomerId == customerId && b.Status == "Complete")
+                                                .ToListAsync();
+
+            if (completeBookings == null || completeBookings.Count == 0)
+            {
+                return NotFound("No complete bookings found for the specified customer.");
+            }
+
+            var ordersHistory = new List<OrdersHistoryModel>();
+
+            foreach (var booking in completeBookings)
+            {
+                // Find the order corresponding to the current booking
+                var order = await _context.Orders.FirstOrDefaultAsync(o => o.ApartmentId == booking.ApartmentId);
+
+                if (order == null)
+                {
+                    return NotFound("No order found for the specified booking.");
+                }
+
+                // Map Order entity to OrdersHistoryModel instance
+                var orderHistory = new OrdersHistoryModel
+                {
+                    OrderId = order.OrderId,
+                    Date = order.Date,
+                    AgencyId = order.AgencyId,
+                    ApartmentId = order.ApartmentId,
+                    Status = order.Status,
+                    TotalAmount = order.TotalAmount,
+                    CustomerId = booking.CustomerId
+                };
+
+                ordersHistory.Add(orderHistory);
+            }
+
+            return ordersHistory;
+        }
+
 
     }
 }
