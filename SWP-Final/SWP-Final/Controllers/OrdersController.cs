@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SWP_Final.Entities;
+using SWP_Final.Models;
 
 namespace SWP_Final.Controllers
 {
@@ -136,7 +137,7 @@ namespace SWP_Final.Controllers
 
 
 
-        [HttpPost("CreateOrderFromBooking")]
+        [HttpPost("CreateOrderFromBooking/{bookingId}")]
         public async Task<IActionResult> CreateOrderFromBooking(string bookingId)
         {
             // Find the booking
@@ -210,7 +211,7 @@ namespace SWP_Final.Controllers
             return Ok("Order created successfully.");
         }
 
-        [HttpDelete("DeleteOrderAndHealingBooking")]
+        [HttpDelete("DeleteOrderAndHealingBooking/{bookingId}")]
         public async Task<IActionResult> DeleteOrderAndHealingBooking(string bookingId)
         {
             var booking = await _context.Bookings.FindAsync(bookingId);
@@ -256,6 +257,49 @@ namespace SWP_Final.Controllers
             return Ok("Orders deleted successfully.");
         }
 
+        [HttpGet("GetAllOderByAgencyId/{agencyId}")]
+        public async Task<ActionResult<IEnumerable<OrdersHistoryModel>>> GetAllOderByAgencyId(string agencyId)
+        {
+            // Retrieve orders with the specified agencyId
+            var orders = await _context.Orders
+                                        .Where(b => b.AgencyId == agencyId)
+                                        .ToListAsync();
+
+            if (orders == null || orders.Count == 0)
+            {
+                return NotFound("No orders found for the specified agency.");
+            }
+
+            var ordersHistory = new List<OrdersHistoryModel>();
+
+            foreach (var order in orders)
+            {
+                // Find complete booking for the current order's apartment
+                var completeBooking = await _context.Bookings
+                                            .FirstOrDefaultAsync(b => b.ApartmentId == order.ApartmentId && b.Status == "Complete");
+
+                if (completeBooking == null)
+                {
+                    return NotFound("No complete booking found for the specified agency.");
+                }
+
+                // Map Order entity to OrdersHistoryModel instance
+                var orderHistory = new OrdersHistoryModel
+                {
+                    OrderId = order.OrderId,
+                    Date = order.Date,
+                    AgencyId = order.AgencyId,
+                    ApartmentId = order.ApartmentId,
+                    Status = order.Status,
+                    TotalAmount = order.TotalAmount,
+                    CustomerId = completeBooking.CustomerId
+                };
+
+                ordersHistory.Add(orderHistory);
+            }
+
+            return ordersHistory;
+        }
 
 
     }
