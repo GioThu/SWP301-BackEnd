@@ -178,6 +178,21 @@ namespace SWP_Final.Controllers
         }
 
 
+        [HttpGet("GetAllBookingsByCustomerId/{customerId}")]
+        public async Task<ActionResult<IEnumerable<Booking>>> GetAllBookingsByCustomerId(string customerId)
+        {
+            var bookingbycustomer = await _context.Bookings
+                                                   .Where(booking=>booking.CustomerId == customerId)
+                                                   .OrderBy(booking => booking.BookingId)
+                                                   .ToListAsync();
+            if (bookingbycustomer == null || bookingbycustomer.Count==0)
+            {
+                return NotFound();
+            }
+            return bookingbycustomer;
+        }
+
+        [NonAction]
         // Method to check if a booking with the same CustomerId and ApartmentId already exists
         private bool BookingExistsForApartment(string customerId, string apartmentId)
         {

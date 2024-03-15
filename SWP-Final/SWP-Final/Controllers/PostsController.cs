@@ -264,48 +264,45 @@ namespace SWP_Final.Controllers
         [HttpPost("UploadInformationWithImage/{id}")]
         public async Task<IActionResult> UploadInformationWithImage([FromForm] PostModel postModel, string id)
         {
-            int count = 0;
-            var postlist = await _context.Posts.ToListAsync();
-            string fileNameImagePostModel = $"Images/PostImage/{postModel.FileImage.FileName}";
             var post = await _context.Posts.FindAsync(id);
-            string fileNameImagePost = post.Images;
             if (post == null)
             {
                 return NotFound("Post not found");
             }
-            foreach (var postimage in postlist)
-            {
-                if (postimage.Images == fileNameImagePost)
-                {
-                    count++;
-                }
-            }
 
-            var path = GetFilePath(fileNameImagePost);
-            if (System.IO.File.Exists(path))
+            // Check if an image file is included and has content
+            if (postModel.FileImage != null && postModel.FileImage.Length > 0)
             {
-                if (fileNameImagePost != valiablenoimage() && count == 0)
+                string fileNameImagePostModel = $"Images/PostImage/{postModel.FileImage.FileName}";
+                int count = _context.Posts.Count(p => p.Images == post.Images);
+
+                // Delete existing file if it's not the default image and not used elsewhere
+                var path = GetFilePath(post.Images);
+                if (System.IO.File.Exists(path) && post.Images != valiablenoimage() && count == 0)
                 {
                     System.IO.File.Delete(path);
                 }
 
+                // Save the new file
+                var filepath = GetFilePath(fileNameImagePostModel);
+                using (var stream = System.IO.File.Create(filepath))
+                {
+                    await postModel.FileImage.CopyToAsync(stream);
+                }
+                post.Images = fileNameImagePostModel; // Update the image path only if a new image is uploaded
             }
-            var filepath = GetFilePath(fileNameImagePostModel);
-            using (var stream = System.IO.File.Create(filepath))
-            {
-                await postModel.FileImage.CopyToAsync(stream);
-            }
+
+            // Always update these fields regardless of whether a new image was uploaded
             post.SalesOpeningDate = postModel.SalesOpeningDate;
             post.SalesClosingDate = postModel.SalesClosingDate;
             post.Description = postModel.Description;
             post.PriorityMethod = postModel.PriorityMethod;
-            post.Images = fileNameImagePostModel;
             post.BuildingId = postModel.BuildingId;
-
 
             await _context.SaveChangesAsync();
             return Ok(post);
         }
+
 
         //DELETE: api/Posts/DeleteImage
         [HttpDelete("DeleteImage/{id}")]

@@ -348,9 +348,9 @@ namespace SWP_Final.Controllers
             // Lấy danh sách các căn hộ thuộc tòa nhà có buildingId và agencyId tương ứng,
             // loại trừ các căn hộ có trạng thái là "Sold", và sắp xếp theo diện tích từ thấp đến cao
             var apartmentsByBuildingAndAgency = await _context.Apartments
-                                                    .Where(a => a.BuildingId == buildingId && a.AgencyId == agencyId)
-                                                    .OrderBy(a => a.ApartmentId)
-                                                    .ToListAsync();
+                                                        .Where(a => a.BuildingId == buildingId && a.AgencyId == agencyId)
+                                                        .OrderBy(a => a.ApartmentId)
+                                                        .ToListAsync();
 
             if (apartmentsByBuildingAndAgency.Count == 0)
             {
@@ -362,48 +362,50 @@ namespace SWP_Final.Controllers
 
 
         //POST: api/Apartment/UploadInfoWithImage
+       
+
         [HttpPost("UploadInformationWithImage/{id}")]
         public async Task<IActionResult> UploadInformationWithImage([FromForm] ApartmentModel apartmentModel, string id)
         {
-            int count = 0;
-            var apartmentlist = await _context.Apartments.ToListAsync();
-            string fileNameImageApartmentModel = $"Images/AsImage/{apartmentModel.ApartmentType.FileName}";
             var apartment = await _context.Apartments.FindAsync(id);
-            string fileNameImageApartment = apartment.ApartmentType;
             if (apartment == null)
             {
-                return NotFound("apartment not found");
-            }
-            foreach (var apartmentimage in apartmentlist)
-            {
-                if (apartmentimage.ApartmentType == fileNameImageApartment)
-                {
-                    count++;
-                }
+                return NotFound("Apartment not found");
             }
 
-            var path = GetFilePath(fileNameImageApartment);
-            if (System.IO.File.Exists(path))
+            // Update non-image properties regardless of whether an image is provided
+            apartment.Description = apartmentModel.Description;
+            apartment.NumberOfBathrooms = apartmentModel.NumberOfBathrooms;
+            apartment.NumberOfBedrooms = apartmentModel.NumberOfBedrooms;
+            apartment.Price = apartmentModel.Price;
+            apartment.Furniture = apartmentModel.Furniture;
+
+            // Process image only if provided
+            if (apartmentModel.ApartmentType != null && apartmentModel.ApartmentType.Length > 0)
             {
-                if (fileNameImageApartment != valiablenoimage() && count == 0)
+                string fileNameImageApartmentModel = $"Images/ApartmentsImage/{apartmentModel.ApartmentType.FileName}";
+                int count = _context.Apartments.Count(a => a.ApartmentType == apartment.ApartmentType);
+
+                // Delete existing file if it's not used elsewhere
+                var path = GetFilePath(apartment.ApartmentType);
+                if (System.IO.File.Exists(path) && apartment.ApartmentType != valiablenoimage() && count == 0)
                 {
                     System.IO.File.Delete(path);
                 }
 
+                // Save new file
+                var filepath = GetFilePath(fileNameImageApartmentModel);
+                using (var stream = System.IO.File.Create(filepath))
+                {
+                    await apartmentModel.ApartmentType.CopyToAsync(stream);
+                }
+                apartment.ApartmentType = fileNameImageApartmentModel;
             }
-            var filepath = GetFilePath(fileNameImageApartmentModel);
-            using (var stream = System.IO.File.Create(filepath))
-            {
-                await apartmentModel.ApartmentType.CopyToAsync(stream);
-            }
-            apartment.Description = apartmentModel.Description;
-            apartment.ApartmentType = fileNameImageApartmentModel;
-            
-
 
             await _context.SaveChangesAsync();
             return Ok(apartment);
         }
+
 
         [HttpGet("GetAllAgencyAndNumberOfApartment")]
         public async Task<ActionResult<IEnumerable<AgencyApartmentCountModel>>> GetAllAgencyAndNumberOfApartment()
@@ -430,7 +432,28 @@ namespace SWP_Final.Controllers
         }
 
 
+        [HttpGet("GetListBuildingIdByApartmentId/{apartmentId}")]
+        public async Task<ActionResult<IEnumerable<string>>> GetListBuildingIdByApartmentId(string apartmentId)
+        {
+            if (_context.Apartments == null)
+            {
+                return NotFound();
+            }
 
+            // Lấy danh sách duy nhất các BuildingID dựa trên AgencyId
+            var buildingIds = await _context.Apartments
+                                            .Where(a => a.ApartmentId == apartmentId)
+                                            .Select(a => a.BuildingId) // Chọn ra trường BuildingId
+                                            .Distinct() // Loại bỏ các giá trị trùng lặp
+                                            .ToListAsync();
+
+            if (buildingIds == null || buildingIds.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return buildingIds; // Trả về danh sách các BuildingID duy nhất
+        }
 
 
 
