@@ -253,49 +253,49 @@ namespace SWP_Final.Controllers
             return Ok("No agencies needed updates.");
         }
 
-        //POST: api/Customers/UploadImage
-        [HttpPost("UploadImage/{id}")]
-        public async Task<IActionResult> UploadImageCustomer([FromForm] CustomerModel customerModel, string id)
+        //POST: api/Customers/UploadInformationAndImage
+        [HttpPost("UploadInformationAndImage/{customerid}")]
+        public async Task<IActionResult> UploadInformationAndImage([FromForm] CustomerModel customerModel, string customerid)
         {
-            int count = 0;
-            var customerlist = await _context.Customers.ToListAsync();
-            string filenameimageacenciesmodel = $"Images/CustomerImages/{customerModel.FileImage.FileName}";
-            var customer = await _context.Customers.FindAsync(id);
-            string filenameimagecustomer = customer.Images;
+            var customer = await _context.Customers.FindAsync(customerid);
             if (customer == null)
             {
-                return NotFound("customer not found");
+                return NotFound("Customer not found");
             }
 
-            foreach (var customerimage in customerlist)
+            // Only proceed with image processing if an image file is included and has content
+            if (customerModel.FileImage != null && customerModel.FileImage.Length > 0)
             {
-                if (customerimage.Images == filenameimagecustomer)
-                {
-                    count++;
-                    break;
-                }
-            }
+                string filenameImageCustomersModel = $"Images/CustomerImages/{customerModel.FileImage.FileName}";
+                int count = _context.Customers.Count(c => c.Images == customer.Images);
 
-            var path = GetFilePath(filenameimagecustomer);
-            if (System.IO.File.Exists(path))
-            {
-                if (filenameimagecustomer != valiablenoimage() && count == 0)
+                // Delete existing file if it's not the default image and not used elsewhere
+                var path = GetFilePath(customer.Images);
+                if (System.IO.File.Exists(path) && customer.Images != valiablenoimage() && count == 0)
                 {
                     System.IO.File.Delete(path);
                 }
 
+                // Save the new file
+                var filepath = GetFilePath(filenameImageCustomersModel);
+                using (var stream = System.IO.File.Create(filepath))
+                {
+                    await customerModel.FileImage.CopyToAsync(stream);
+                }
+                customer.Images = filenameImageCustomersModel; // Update the image path only if new image is uploaded
             }
-            var filepath = GetFilePath(filenameimageacenciesmodel);
-            using (var stream = System.IO.File.Create(filepath))
-            {
-                await customerModel.FileImage.CopyToAsync(stream);
-            }
-            customer.Images = filenameimageacenciesmodel;
 
+            // Always update these fields regardless of whether a new image was uploaded
+            customer.FirstName = customerModel.FirstName;
+            customer.LastName = customerModel.LastName;
+            customer.Address = customerModel.Address;
+            customer.Gender = customerModel.Gender;
+            customer.Phone = customerModel.Phone;
 
             await _context.SaveChangesAsync();
             return Ok(customer);
         }
+
 
         //DELETE: api/Customers/DeleteImage
         [HttpDelete("DeleteImage/{id}")]

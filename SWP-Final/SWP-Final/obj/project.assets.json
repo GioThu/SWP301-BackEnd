@@ -11540,19 +11540,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\LG\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\SWP-Final.csproj",
+      "projectUniqueName": "C:\\Users\\LG\\Desktop\\10\\LAI2\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\SWP-Final.csproj",
       "projectName": "SWP-Final",
-      "projectPath": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\SWP-Final.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\obj\\",
+      "projectPath": "C:\\Users\\LG\\Desktop\\10\\LAI2\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\SWP-Final.csproj",
+      "packagesPath": "C:\\Users\\LG\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LG\\Desktop\\10\\LAI2\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\LG\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

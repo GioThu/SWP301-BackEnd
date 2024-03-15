@@ -307,14 +307,13 @@ namespace SWP_Final.Controllers
 
 
 
-        //POST: api/Agencies/UploadImage
-        [HttpPost("UploadImage/{id}")]
-        public async Task<IActionResult> UploadImageAsync([FromForm] AgencyModel agencyModel, string id)
+        //POST: api/Agencies/UploadAgencyAndImage
+        [HttpPost("UploadAgencyAndImage/{agencyid}")]
+        public async Task<IActionResult> UploadAgencyAndImage([FromForm] AgencyModel agencyModel, string agencyid)
         {
             int count = 0;
             var agencylist = await _context.Agencies.ToListAsync();
-            string filenameimageacenciesmodel = $"Images/AgenciesImage/{agencyModel.FileImage.FileName}";
-            var agency = await _context.Agencies.FindAsync(id);
+            var agency = await _context.Agencies.FindAsync(agencyid);
             string filenameimageagency = agency.Images;
             if (agency == null)
             {
@@ -328,26 +327,48 @@ namespace SWP_Final.Controllers
                 }
             }
 
-            var path = GetFilePath(filenameimageagency);
-            if (System.IO.File.Exists(path))
+            // Check if an image file is provided
+            if (agencyModel.FileImage != null && agencyModel.FileImage.Length > 0)
             {
-                if (filenameimageagency != valiablenoimage() && count == 0)
+                string filenameImageAgenciesModel = $"Images/AgenciesImage/{Path.GetFileName(agencyModel.FileImage.FileName)}";
+                var filepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filenameImageAgenciesModel);
+
+                // Ensure the directory exists
+                var directoryName = Path.GetDirectoryName(filepath);
+                if (!Directory.Exists(directoryName))
                 {
-                    System.IO.File.Delete(path);
+                    Directory.CreateDirectory(directoryName);
                 }
 
-            }
-            var filepath = GetFilePath(filenameimageacenciesmodel);
-            using (var stream = System.IO.File.Create(filepath))
-            {
-                await agencyModel.FileImage.CopyToAsync(stream);
-            }
-            agency.Images = filenameimageacenciesmodel;
+                // Save the new image
+                using (var stream = new FileStream(filepath, FileMode.Create))
+                {
+                    await agencyModel.FileImage.CopyToAsync(stream);
+                }
 
+                // Delete the old image if it is different from the new one and it's not the default image
+                if (agency.Images != filenameImageAgenciesModel && agency.Images != valiablenoimage())
+                {
+                    var oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", agency.Images);
+                    if (System.IO.File.Exists(oldImagePath) && filenameimageagency != valiablenoimage() && count == 0)
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
+
+                agency.Images = filenameImageAgenciesModel;
+            }
+
+            // Update other agency details
+            agency.FirstName = agencyModel.FirstName;
+            agency.LastName = agencyModel.LastName;
+            agency.Address = agencyModel.Address;
+            agency.Phone = agencyModel.Phone;
 
             await _context.SaveChangesAsync();
             return Ok(agency);
         }
+
 
         //DELETE: api/Agencies/DeleteImage
         [HttpDelete("DeleteImage/{id}")]

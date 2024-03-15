@@ -269,45 +269,38 @@ namespace SWP_Final.Controllers
         [HttpPost("UploadImage/{id}")]
         public async Task<IActionResult> UploadImageBuilding([FromForm] BuildingModel buildingModel, string id)
         {
-            int count = 0;
-            var buildinglist = await _context.Buildings.ToListAsync();
-            string fileNameImageBuildingModel = $"Images/BuildingImages/{buildingModel.FileImage.FileName}";
             var building = await _context.Buildings.FindAsync(id);
-            string fileNameImageBuilding = building.Images;
             if (building == null)
             {
-                return NotFound("building not found");
+                return NotFound("Building not found");
             }
 
-            foreach (var buildingimage in buildinglist)
+            // Only proceed with image processing if an image file is included in the request
+            if (buildingModel.FileImage != null && buildingModel.FileImage.Length > 0)
             {
-                if (buildingimage.Images == fileNameImageBuilding)
-                {
-                    count++;
-                    break;
-                }
-            }
+                string fileNameImageBuildingModel = $"Images/BuildingImages/{buildingModel.FileImage.FileName}";
+                int count = _context.Buildings.Count(b => b.Images == building.Images);
 
-            var path = GetFilePath(fileNameImageBuilding);
-            if (System.IO.File.Exists(path))
-            {
-                if (fileNameImageBuilding != valiablenoimage() && count == 0)
+                // Delete existing file if it's not used elsewhere
+                var path = GetFilePath(building.Images);
+                if (System.IO.File.Exists(path) && building.Images != valiablenoimage() && count == 0)
                 {
                     System.IO.File.Delete(path);
                 }
 
+                // Save the new file
+                var filepath = GetFilePath(fileNameImageBuildingModel);
+                using (var stream = System.IO.File.Create(filepath))
+                {
+                    await buildingModel.FileImage.CopyToAsync(stream);
+                }
+                building.Images = fileNameImageBuildingModel;
             }
-            var filepath = GetFilePath(fileNameImageBuildingModel);
-            using (var stream = System.IO.File.Create(filepath))
-            {
-                await buildingModel.FileImage.CopyToAsync(stream);
-            }
-            building.Images = fileNameImageBuildingModel;
-
 
             await _context.SaveChangesAsync();
             return Ok(building);
         }
+
 
         //DELETE: api/Buildings/DeleteImage
         [HttpDelete("DeleteImage/{id}")]
