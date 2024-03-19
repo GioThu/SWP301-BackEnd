@@ -193,10 +193,10 @@ namespace SWP_Final.Controllers
             return bookingbycustomer;
         }
 
-        [HttpPut("ChangeBookingStatus/{id}")]
-        public async Task<IActionResult> ChangeBookingStatus(string id, string newStatus)
+        [HttpPut("ChangeBookingStatus/{id}/{newStatus}")]
+        public async Task<IActionResult> ChangeBookingStatus(string bookingId, string newStatus)
         {
-            var booking = await _context.Bookings.FindAsync(id);
+            var booking = await _context.Bookings.FindAsync(bookingId);
             if (booking == null)
             {
                 return NotFound("Booking not found.");

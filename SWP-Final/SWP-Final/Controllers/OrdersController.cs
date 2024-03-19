@@ -150,7 +150,7 @@ namespace SWP_Final.Controllers
 
             // Retrieve all bookings with the same apartmentId as the one in the provided booking
             var bookingsToClose = await _context.Bookings
-                .Where(b => b.ApartmentId == booking.ApartmentId && b.Status == "Active")
+                .Where(b => b.ApartmentId == booking.ApartmentId)
                 .ToListAsync();
 
             // Close each booking found except the current one
@@ -192,7 +192,7 @@ namespace SWP_Final.Controllers
                 Date = booking.Date,
                 AgencyId = booking.AgencyId,
                 ApartmentId = booking.ApartmentId,
-                Status = "Waiting", 
+                Status = "Unpaid", 
                 TotalAmount = booking.Money
             };
 
@@ -236,7 +236,7 @@ namespace SWP_Final.Controllers
                .Where(b => b.ApartmentId == booking.ApartmentId)
                .ToListAsync();
 
-            apartment.Status = "Distributed"; // Chuyển trạng thái của apartment thành "Updated"
+            apartment.Status = "Distributed"; // Chuyển trạng thái của apartment thành "Distributed"
 
             _context.Orders.Remove(orderToDelete);
             await _context.SaveChangesAsync();
@@ -391,6 +391,31 @@ namespace SWP_Final.Controllers
             }
 
             return orders;
+        }
+
+        [HttpGet("GetRemainingAmount/{orderId}")]
+        public async Task<ActionResult<decimal>> GetRemainingAmount(string orderId)
+        {
+            // Find the order
+            var order = await _context.Orders.FindAsync(orderId);
+
+            if (order == null)
+            {
+                return NotFound($"Order with ID {orderId} not found.");
+            }
+
+            // Find the corresponding apartment
+            var apartment = await _context.Apartments.FindAsync(order.ApartmentId);
+
+            if (apartment == null)
+            {
+                return NotFound($"Apartment with ID {order.ApartmentId} not found.");
+            }
+
+            // Calculate the remaining amount by subtracting order total amount from apartment's total amount
+            var remainingAmount = apartment.Price - order.TotalAmount;
+
+            return remainingAmount;
         }
 
 
