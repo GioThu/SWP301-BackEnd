@@ -500,6 +500,34 @@ namespace SWP_Final.Controllers
         }
 
 
+        [HttpPost("DistributeApartment")]
+        public async Task<IActionResult> DistributeApartment(string buildingId, string agencyId, string apartmentId, decimal price)
+        {
+            var apartment = await _context.Apartments.FirstOrDefaultAsync(a => a.BuildingId == buildingId && a.ApartmentId == apartmentId);
+
+            if (apartment == null)
+            {
+                return NotFound($"Không tìm thấy căn hộ có ID: {apartmentId} trong tòa nhà có ID: {buildingId}");
+            }
+
+            // Check if the apartment is already assigned to an agency
+            if (!string.IsNullOrEmpty(apartment.AgencyId))
+            {
+                return BadRequest($"Căn hộ có ID: {apartmentId} đã được phân phối cho một đại lý.");
+            }
+
+            // Assign the apartment to the specified agency and update its status and price
+            apartment.AgencyId = agencyId;
+            apartment.Status = "Distributed";
+            apartment.Price = price;
+
+
+            // Lưu thay đổi vào cơ sở dữ liệu
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
 
 
 
