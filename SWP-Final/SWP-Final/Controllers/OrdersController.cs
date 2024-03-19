@@ -192,8 +192,8 @@ namespace SWP_Final.Controllers
                 Date = booking.Date,
                 AgencyId = booking.AgencyId,
                 ApartmentId = booking.ApartmentId,
-                Status = "Open", 
-                TotalAmount = apartment.Price
+                Status = "Waiting", 
+                TotalAmount = booking.Money
             };
 
             // Add the order to the context
@@ -228,31 +228,21 @@ namespace SWP_Final.Controllers
                 return NotFound($"Apartment with ID {booking.ApartmentId} not found.");
             }
 
-            var ordersToDelete = await _context.Orders
-                .Where(o => o.ApartmentId == booking.ApartmentId)
-                .ToListAsync();
+            var orderToDelete = await _context.Orders
+               .Where(o => o.ApartmentId == booking.ApartmentId)
+               .FirstOrDefaultAsync();
 
-            var bookingsToUpdate = await _context.Bookings
-                .Where(b => b.ApartmentId == booking.ApartmentId && (b.Status == "Closed" || b.Status == "Complete"))
-                .ToListAsync();
+            var bookingsToDelete = await _context.Bookings
+               .Where(b => b.ApartmentId == booking.ApartmentId)
+               .ToListAsync();
 
-            foreach (var b in bookingsToUpdate)
-            {
-                b.Status = "Active"; // Chuyển booking thành "Active"
-            }
+            apartment.Status = "Distributed"; // Chuyển trạng thái của apartment thành "Updated"
 
-            apartment.Status = "Updated"; // Chuyển trạng thái của apartment thành "Updated"
+            _context.Orders.Remove(orderToDelete);
+            await _context.SaveChangesAsync();
 
-            try
-            {
-                // Xóa các đơn đặt hàng của apartment
-                _context.Orders.RemoveRange(ordersToDelete);
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                return StatusCode(500, "Failed to delete orders.");
-            }
+            _context.Bookings.RemoveRange(bookingsToDelete);
+            await _context.SaveChangesAsync();
 
             return Ok("Orders deleted successfully.");
         }
@@ -274,16 +264,7 @@ namespace SWP_Final.Controllers
 
             foreach (var order in orders)
             {
-                // Find complete booking for the current order's apartment
-                var completeBooking = await _context.Bookings
-                                            .FirstOrDefaultAsync(b => b.ApartmentId == order.ApartmentId && b.Status == "Complete");
 
-                if (completeBooking == null)
-                {
-                    return NotFound("No complete booking found for the specified agency.");
-                }
-
-                // Map Order entity to OrdersHistoryModel instance
                 var orderHistory = new OrdersHistoryModel
                 {
                     OrderId = order.OrderId,
@@ -292,7 +273,7 @@ namespace SWP_Final.Controllers
                     ApartmentId = order.ApartmentId,
                     Status = order.Status,
                     TotalAmount = order.TotalAmount,
-                    CustomerId = completeBooking.CustomerId
+                    CustomerId = order.CustomerId
                 };
 
                 ordersHistory.Add(orderHistory);
@@ -304,42 +285,25 @@ namespace SWP_Final.Controllers
         [HttpGet("GetAllOderByCustomerId/{customerId}")]
         public async Task<ActionResult<IEnumerable<OrdersHistoryModel>>> GetAllOderByCustomerId(string customerId)
         {
-            // Retrieve bookings with the specified customerId and status "Complete"
-            var completeBookings = await _context.Bookings
-                                                .Where(b => b.CustomerId == customerId && b.Status == "Complete")
-                                                .ToListAsync();
+            var orders = await _context.Orders
+                               .Where(o => o.CustomerId == customerId )
+                               .ToListAsync();
 
-            if (completeBookings == null || completeBookings.Count == 0)
+            if (orders == null || orders.Count == 0)
             {
-                return NotFound("No complete bookings found for the specified customer.");
+                return NotFound("No orders found for the specified customer.");
             }
 
-            var ordersHistory = new List<OrdersHistoryModel>();
-
-            foreach (var booking in completeBookings)
+            var ordersHistory = orders.Select(order => new OrdersHistoryModel
             {
-                // Find the order corresponding to the current booking
-                var order = await _context.Orders.FirstOrDefaultAsync(o => o.ApartmentId == booking.ApartmentId);
-
-                if (order == null)
-                {
-                    return NotFound("No order found for the specified booking.");
-                }
-
-                // Map Order entity to OrdersHistoryModel instance
-                var orderHistory = new OrdersHistoryModel
-                {
-                    OrderId = order.OrderId,
-                    Date = order.Date,
-                    AgencyId = order.AgencyId,
-                    ApartmentId = order.ApartmentId,
-                    Status = order.Status,
-                    TotalAmount = order.TotalAmount,
-                    CustomerId = booking.CustomerId
-                };
-
-                ordersHistory.Add(orderHistory);
-            }
+                OrderId = order.OrderId,
+                Date = order.Date,
+                AgencyId = order.AgencyId,
+                ApartmentId = order.ApartmentId,
+                Status = order.Status,
+                TotalAmount = order.TotalAmount,
+                CustomerId = order.CustomerId
+            }).ToList();
 
             return ordersHistory;
         }
@@ -386,6 +350,47 @@ namespace SWP_Final.Controllers
             }
 
             return ordersBill;
+        }
+
+        [HttpPut("ChangeOrderStatus/{orderId}/{newStatus}")]
+        public async Task<IActionResult> ChangeOrderStatus(string orderId, string newStatus)
+        {
+            // Find the order
+            var order = await _context.Orders.FindAsync(orderId);
+
+            if (order == null)
+            {
+                return NotFound($"Order with ID {orderId} not found.");
+            }
+
+            // Update the order status
+            order.Status = newStatus;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                return StatusCode(500, "Failed to update order status.");
+            }
+
+            return Ok($"Order status changed to {newStatus}.");
+        }
+
+        [HttpGet("GetWaitingOrders")]
+        public async Task<ActionResult<IEnumerable<Order>>> GetWaitingOrders()
+        {
+            var orders = await _context.Orders
+                                        .Where(o => o.Status == "Waiting")
+                                        .ToListAsync();
+
+            if (orders == null || orders.Count == 0)
+            {
+                return NotFound("No orders found with status Waiting.");
+            }
+
+            return orders;
         }
 
 

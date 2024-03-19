@@ -12,6 +12,7 @@ namespace SWP_Final.Entities
         public string? Status { get; set; }
         public decimal? TotalAmount { get; set; }
 
+        public string? CustomerId { get; set; }
         public virtual Agency? Agency { get; set; }
         public virtual Apartment? Apartment { get; set; }
     }

@@ -127,7 +127,7 @@ namespace SWP_Final.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<Booking>> PostBooking(string customerId, string apartmentId)
+        public async Task<ActionResult<Booking>> PostBooking(string customerId, string apartmentId, decimal money)
         {
             if (BookingExistsForApartment(customerId, apartmentId))
             {
@@ -148,9 +148,10 @@ namespace SWP_Final.Controllers
                 CustomerId = customerId,
                 ApartmentId = apartmentId,
                 AgencyId = agencyId,
-                Status = "Active", // Set status to "Active"
+                Status = "Waiting", // Set status to "Active"
                 BookingId = Guid.NewGuid().ToString(), // Generate a unique BookingID
-                Date = DateTime.Now
+                Date = DateTime.Now,
+                Money = money
             };
 
             _context.Bookings.Add(booking);
@@ -191,6 +192,60 @@ namespace SWP_Final.Controllers
             }
             return bookingbycustomer;
         }
+
+        [HttpPut("ChangeBookingStatus/{id}")]
+        public async Task<IActionResult> ChangeBookingStatus(string id, string newStatus)
+        {
+            var booking = await _context.Bookings.FindAsync(id);
+            if (booking == null)
+            {
+                return NotFound("Booking not found.");
+            }
+
+            // Kiểm tra trạng thái mới không được trống
+            if (string.IsNullOrEmpty(newStatus))
+            {
+                return BadRequest("New status cannot be empty.");
+            }
+
+            // Cập nhật trạng thái
+            booking.Status = newStatus;
+
+            // Lưu các thay đổi vào cơ sở dữ liệu
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BookingExists(booking.BookingId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        [HttpGet("GetWaitingBookings")]
+        public async Task<ActionResult<IEnumerable<Booking>>> GetWaitingBookings()
+        {
+            var waitingBookings = await _context.Bookings
+                                                .Where(b => b.Status == "Waiting")
+                                                .ToListAsync();
+
+            if (waitingBookings == null || !waitingBookings.Any())
+            {
+                return NotFound("No bookings found with status Waiting.");
+            }
+
+            return waitingBookings;
+        }
+
 
         [NonAction]
         // Method to check if a booking with the same CustomerId and ApartmentId already exists

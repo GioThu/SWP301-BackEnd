@@ -10,5 +10,7 @@ namespace SWP_Final.Models
         public string ApartmentId { get; set; }
         public string CustomerId { get; set; }
         public string Status { get; set; }
+
+        public string Money { get; set; }
     }
 }
