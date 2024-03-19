@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using SWP_Final.Entities;
 using SWP_Final.Models;
 using SWP_Final.Repositories;
+using System.Text.Json.Serialization;
+using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace SWP_Final.Controllers
 {
@@ -13,10 +16,12 @@ namespace SWP_Final.Controllers
     {
         private readonly IUserRepositories _userRepo;
         private string fileNameImageAcenciesModel;
+        private readonly RealEasteSWPContext _context;
 
-        public UsersController(IUserRepositories repository)
+        public UsersController(IUserRepositories repository, RealEasteSWPContext context)
         {
             _userRepo = repository;
+            _context = context;
         }
 
         [HttpPut("BlockUser/{id}")]
@@ -158,5 +163,29 @@ namespace SWP_Final.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+        //POST: api/user/UploadUserById
+        [HttpPost("UploadUserById/{userId}")]
+        public async Task<IActionResult> UploadUserById([FromForm] UserModel userModel, string userId)
+        {
+            
+            var user = await _context.Users.FindAsync(userId);
+           
+            if (user == null)
+            {
+                return NotFound("Agency not found");
+            }
+            user.Username = userModel.Username; 
+            user.Password = userModel.Password;
+
+
+
+            
+            await _context.SaveChangesAsync();
+            return Ok(user);
+        }
+
+
     }
 }

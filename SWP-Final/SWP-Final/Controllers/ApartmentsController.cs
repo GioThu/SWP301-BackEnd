@@ -379,28 +379,43 @@ namespace SWP_Final.Controllers
             apartment.NumberOfBedrooms = apartmentModel.NumberOfBedrooms;
             apartment.Price = apartmentModel.Price;
             apartment.Furniture = apartmentModel.Furniture;
+            apartment.Area = apartmentModel.Area;
+            apartment.Status = "Updated";
 
             // Process image only if provided
             if (apartmentModel.ApartmentType != null && apartmentModel.ApartmentType.Length > 0)
             {
-                string fileNameImageApartmentModel = $"Images/ApartmentsImage/{apartmentModel.ApartmentType.FileName}";
-                int count = _context.Apartments.Count(a => a.ApartmentType == apartment.ApartmentType);
+                string fileNameImageApartmentModel = $"Images/ApartmentsImage/{Path.GetFileName(apartmentModel.ApartmentType.FileName)}";
+                var filepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", fileNameImageApartmentModel);
 
-                // Delete existing file if it's not used elsewhere
-                var path = GetFilePath(apartment.ApartmentType);
-                if (System.IO.File.Exists(path) && apartment.ApartmentType != valiablenoimage() && count == 0)
+                // Ensure the directory exists
+                var directoryName = Path.GetDirectoryName(filepath);
+                if (!Directory.Exists(directoryName))
                 {
-                    System.IO.File.Delete(path);
+                    Directory.CreateDirectory(directoryName);
                 }
 
                 // Save new file
-                var filepath = GetFilePath(fileNameImageApartmentModel);
-                using (var stream = System.IO.File.Create(filepath))
+                using (var stream = new FileStream(filepath, FileMode.Create))
                 {
                     await apartmentModel.ApartmentType.CopyToAsync(stream);
                 }
+
+                int count = _context.Apartments.Count(a => a.ApartmentType == apartment.ApartmentType && a.ApartmentId != apartment.ApartmentId); // Ensure not counting the current apartment
+
+                // Delete the old image if it is different from the new one and it's not the default image
+                if (apartment.ApartmentType != fileNameImageApartmentModel && apartment.ApartmentType != valiablenoimage() && count == 0)
+                {
+                    var oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", apartment.ApartmentType);
+                    if (System.IO.File.Exists(oldImagePath) && apartment.ApartmentType != valiablenoimage())
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
+
                 apartment.ApartmentType = fileNameImageApartmentModel;
             }
+
 
             await _context.SaveChangesAsync();
             return Ok(apartment);

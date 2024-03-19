@@ -364,6 +364,7 @@ namespace SWP_Final.Controllers
             agency.LastName = agencyModel.LastName;
             agency.Address = agencyModel.Address;
             agency.Phone = agencyModel.Phone;
+            agency.Gender = agencyModel.Gender;
 
             await _context.SaveChangesAsync();
             return Ok(agency);
