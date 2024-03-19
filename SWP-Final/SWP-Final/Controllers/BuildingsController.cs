@@ -471,7 +471,7 @@ namespace SWP_Final.Controllers
 
 
         [HttpPost("DistributeFloor")]
-        public async Task<IActionResult> DistributeFloor(string buildingId, string agencyId, int floor)
+        public async Task<IActionResult> DistributeFloor(string buildingId, string agencyId, int floor, decimal price)
         {
             var apartmentsInBuilding = await _context.Apartments
         .Where(a => a.BuildingId == buildingId)
@@ -489,6 +489,7 @@ namespace SWP_Final.Controllers
                 {
                     apartment.AgencyId = agencyId;
                     apartment.Status = "Distributed";
+                    apartment.Price = price;
                 }
             }
 

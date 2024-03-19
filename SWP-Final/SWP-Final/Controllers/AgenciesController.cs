@@ -168,6 +168,11 @@ namespace SWP_Final.Controllers
             {
                 try
                 {
+                    if (_context.Users.Any(u => u.Username == agencyModel.Username))
+                    {
+                        return BadRequest("Tên người dùng đã tồn tại. Vui lòng chọn tên người dùng khác.");
+                    }
+
                     var user = new User
                     {
                         UserId = Guid.NewGuid().ToString(),
