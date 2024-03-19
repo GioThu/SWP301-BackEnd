@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LG\\Desktop\\10\\LAI2\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\SWP-Final.csproj": {}
+    "C:\\Users\\LG\\Desktop\\12\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\SWP-Final.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LG\\Desktop\\10\\LAI2\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\SWP-Final.csproj": {
+    "C:\\Users\\LG\\Desktop\\12\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\SWP-Final.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LG\\Desktop\\10\\LAI2\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\SWP-Final.csproj",
+        "projectUniqueName": "C:\\Users\\LG\\Desktop\\12\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\SWP-Final.csproj",
         "projectName": "SWP-Final",
-        "projectPath": "C:\\Users\\LG\\Desktop\\10\\LAI2\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\SWP-Final.csproj",
+        "projectPath": "C:\\Users\\LG\\Desktop\\12\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\SWP-Final.csproj",
         "packagesPath": "C:\\Users\\LG\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LG\\Desktop\\10\\LAI2\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\obj\\",
+        "outputPath": "C:\\Users\\LG\\Desktop\\12\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LG\\AppData\\Roaming\\NuGet\\NuGet.Config",

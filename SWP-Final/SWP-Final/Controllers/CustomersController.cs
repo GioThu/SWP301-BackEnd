@@ -263,26 +263,58 @@ namespace SWP_Final.Controllers
                 return NotFound("Customer not found");
             }
 
+            // Initialize count to 0
+            int count = 0;
+
+            // Retrieve all customers
+            var customerList = await _context.Customers.ToListAsync();
+
+            // Retrieve the existing image filename for comparison
+            string filenameImageCustomerModel = customer.Images;
+
+            // Loop through existing customers to count occurrences of the same image filename
+            foreach (var customerImage in customerList)
+            {
+                if (customerImage.Images == filenameImageCustomerModel)
+                {
+                    count++;
+                }
+            }
+
             // Only proceed with image processing if an image file is included and has content
             if (customerModel.FileImage != null && customerModel.FileImage.Length > 0)
             {
-                string filenameImageCustomersModel = $"Images/CustomerImages/{customerModel.FileImage.FileName}";
-                int count = _context.Customers.Count(c => c.Images == customer.Images);
+                // Construct the new image filename
+                string filenameImageCustomersModel = $"Images/CustomerImages/{Path.GetFileName(customerModel.FileImage.FileName)}";
 
-                // Delete existing file if it's not the default image and not used elsewhere
-                var path = GetFilePath(customer.Images);
-                if (System.IO.File.Exists(path) && customer.Images != valiablenoimage() && count == 0)
+                // Get the file path for saving
+                var filepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filenameImageCustomersModel);
+
+                // Ensure the directory exists
+                var directoryName = Path.GetDirectoryName(filepath);
+                if (!Directory.Exists(directoryName))
                 {
-                    System.IO.File.Delete(path);
+                    Directory.CreateDirectory(directoryName);
                 }
 
                 // Save the new file
-                var filepath = GetFilePath(filenameImageCustomersModel);
-                using (var stream = System.IO.File.Create(filepath))
+                using (var stream = new FileStream(filepath, FileMode.Create))
                 {
                     await customerModel.FileImage.CopyToAsync(stream);
                 }
-                customer.Images = filenameImageCustomersModel; // Update the image path only if new image is uploaded
+
+                // Delete the old file if it's not the default image and not used elsewhere
+                if (customer.Images != filenameImageCustomersModel && customer.Images != valiablenoimage() && count == 0)
+                {
+                    var oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", customer.Images);
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
+
+                // Update the customer's image path
+                customer.Images = filenameImageCustomersModel;
             }
 
             // Always update these fields regardless of whether a new image was uploaded
@@ -295,6 +327,7 @@ namespace SWP_Final.Controllers
             await _context.SaveChangesAsync();
             return Ok(customer);
         }
+
 
 
         //DELETE: api/Customers/DeleteImage
