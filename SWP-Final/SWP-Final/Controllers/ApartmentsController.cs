@@ -495,7 +495,7 @@ namespace SWP_Final.Controllers
 
             if (newStatus == "Distributed") 
             {
-                apartment.ApartmentType = null;
+                apartment.ApartmentType = "Images/common/noimage.png";
                 apartment.Description = null;
                 apartment.NumberOfBathrooms = 0;
                 apartment.NumberOfBedrooms = 0;
