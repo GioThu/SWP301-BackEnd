@@ -393,11 +393,11 @@ namespace SWP_Final.Controllers
                     string apartmentId;
                     if (j < 10)
                     {
-                        apartmentId = $"{building.BuildingId}?{i}0{j}";
+                        apartmentId = $"{building.BuildingId}:{i}0{j}";
                     }
                     else
                     {
-                        apartmentId = $"{building.BuildingId}?{i}{j}";
+                        apartmentId = $"{building.BuildingId}:{i}{j}";
                     }
                     var apartment = new Apartment
                     {

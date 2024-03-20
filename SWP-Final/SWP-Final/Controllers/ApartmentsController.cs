@@ -515,6 +515,34 @@ namespace SWP_Final.Controllers
             }
         }
 
+        [HttpGet("GetRoomNumberByApartmentId/{apartmentId}")]
+        public async Task<ActionResult<string>> GetRoomNumberByApartmentId(string apartmentId)
+        {
+            // Kiểm tra apartmentId có đúng định dạng buildingId:xxx không
+            if (!apartmentId.Contains(":"))
+            {
+                return BadRequest("Invalid apartmentId format. It should be in the format 'buildingId:xxx'.");
+            }
+
+            // Tách buildingId từ apartmentId
+            var buildingId = apartmentId.Split(':')[0];
+
+            // Tìm building dựa trên buildingId
+            var building = await _context.Buildings.FindAsync(buildingId);
+            if (building == null)
+            {
+                return NotFound("Building not found.");
+            }
+
+            // Lấy số phòng từ apartmentId
+            var roomNumber = apartmentId.Split(':')[1];
+
+            // Kết hợp tên của building và số phòng để tạo chuỗi kết quả
+            var result = $"{building.Name} - Room {roomNumber}";
+
+            return result;
+        }
+
         [NonAction]
 
         private string valiablenoimage() => "Images/common/noimage.png";
