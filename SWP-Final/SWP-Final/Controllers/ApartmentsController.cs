@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SWP_Final.Entities;
 using SWP_Final.Models;
@@ -25,10 +20,10 @@ namespace SWP_Final.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Apartment>>> GetApartments()
         {
-          if (_context.Apartments == null)
-          {
-              return NotFound();
-          }
+            if (_context.Apartments == null)
+            {
+                return NotFound();
+            }
             var apartmentlist = await _context.Apartments.ToListAsync();
 
             // Check if the agency list is empty
@@ -60,10 +55,10 @@ namespace SWP_Final.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Apartment>> GetApartment(string id)
         {
-          if (_context.Apartments == null)
-          {
-              return NotFound();
-          }
+            if (_context.Apartments == null)
+            {
+                return NotFound();
+            }
             var apartment = await _context.Apartments.FindAsync(id);
 
             if (apartment == null)
@@ -80,10 +75,10 @@ namespace SWP_Final.Controllers
         [HttpPost]
         public async Task<ActionResult<Apartment>> PostApartment(Apartment apartment)
         {
-          if (_context.Apartments == null)
-          {
-              return Problem("Entity set 'RealEasteSWPContext.Apartments'  is null.");
-          }
+            if (_context.Apartments == null)
+            {
+                return Problem("Entity set 'RealEasteSWPContext.Apartments'  is null.");
+            }
             _context.Apartments.Add(apartment);
             try
             {
@@ -215,7 +210,7 @@ namespace SWP_Final.Controllers
             existingApartment.Price = apartment.Price;
             existingApartment.Area = apartment.Area;
             existingApartment.Description = apartment.Description;
-            existingApartment.Status = "Updated";
+            existingApartment.Status = "Waiting";
 
 
             try
@@ -242,7 +237,7 @@ namespace SWP_Final.Controllers
         public async Task<IActionResult> GetApartmentImage(string id)
         {
             var apartment = await _context.Apartments.FindAsync(id);
-            if (apartment == null )
+            if (apartment == null)
             {
                 return NotFound("The image does not exist or has been deleted.");
             }
@@ -362,7 +357,7 @@ namespace SWP_Final.Controllers
 
 
         //POST: api/Apartment/UploadInfoWithImage
-       
+
 
         [HttpPost("UploadInformationWithImage/{id}")]
         public async Task<IActionResult> UploadInformationWithImage([FromForm] ApartmentModel apartmentModel, string id)
@@ -380,7 +375,7 @@ namespace SWP_Final.Controllers
             apartment.Price = apartmentModel.Price;
             apartment.Furniture = apartmentModel.Furniture;
             apartment.Area = apartmentModel.Area;
-            apartment.Status = "Updated";
+            apartment.Status = "Waiting";
 
             // Process image only if provided
             if (apartmentModel.ApartmentType != null && apartmentModel.ApartmentType.Length > 0)
@@ -426,21 +421,20 @@ namespace SWP_Final.Controllers
         public async Task<ActionResult<IEnumerable<AgencyApartmentCountModel>>> GetAllAgencyAndNumberOfApartment()
         {
             var agenciesWithApartmentCounts = await _context.Agencies
-                                                .Select(agency => new
-                                                {
-                                                    Agency = agency,
-                                                    ApartmentCount = _context.Apartments
-                                                                        .Where(apartment => apartment.AgencyId == agency.AgencyId && apartment.Status != "Sold")
+             .Select(agency => new
+             {
+                 Agency = agency,
+                 ApartmentCount = _context.Apartments .Where(apartment => apartment.AgencyId == agency.AgencyId && apartment.Status != "Sold")
                                                                         .Count()
-                                                })
+             })
                                                 .Select(result => new AgencyApartmentCountModel
                                                 {
                                                     AgencyId = result.Agency.AgencyId,
                                                     AgencyFirstName = result.Agency.FirstName,
                                                     AgencyLastName = result.Agency.LastName,
                                                     NumberOfApartments = result.ApartmentCount
-                                                
-                                               })
+
+                                                })
                                                 .ToListAsync();
 
             return agenciesWithApartmentCounts;
@@ -471,11 +465,58 @@ namespace SWP_Final.Controllers
         }
 
 
+        [HttpGet("GetWaitingApartments")]
+        public async Task<ActionResult<IEnumerable<Apartment>>> GetWaitingApartments()
+        {
+            // Retrieve apartments with status "Waiting"
+            var waitingApartments = await _context.Apartments
+                                                .Where(a => a.Status == "Waiting")
+                                                .ToListAsync();
 
+            if (waitingApartments.Count == 0)
+            {
+                return NotFound("No apartments found with status 'Waiting'.");
+            }
 
+            return waitingApartments;
+        }
+
+        [HttpPut("ChangeApartmentStatus/{id}")]
+        public async Task<IActionResult> ChangeApartmentStatus(string id, string newStatus)
+        {
+            var apartment = await _context.Apartments.FindAsync(id);
+            if (apartment == null)
+            {
+                return NotFound("Apartment not found");
+            }
+
+            // Update the apartment's status
+            apartment.Status = newStatus;
+
+            if (newStatus == "Distributed") 
+            {
+                apartment.ApartmentType = null;
+                apartment.Description = null;
+                apartment.NumberOfBathrooms = 0;
+                apartment.NumberOfBedrooms = 0;
+                apartment.Furniture = null;
+                apartment.Area = null;
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                return Ok($"Apartment status changed to '{newStatus}' successfully.");
+            }
+            catch (DbUpdateException)
+            {
+                // Log the error or handle it appropriately
+                return StatusCode(500, "An error occurred while changing apartment status.");
+            }
+        }
 
         [NonAction]
-        
+
         private string valiablenoimage() => "Images/common/noimage.png";
 
         private string GetFilePath(string filename) => Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filename);
