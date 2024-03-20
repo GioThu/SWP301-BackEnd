@@ -158,7 +158,7 @@ namespace SWP_Final.Controllers
             {
                 if (b.BookingId != bookingId)
                 {
-                    b.Status = "Closed";
+                    b.Status = "BookingFails";
                 }
                 else
                 {
@@ -232,16 +232,9 @@ namespace SWP_Final.Controllers
                .Where(o => o.ApartmentId == booking.ApartmentId)
                .FirstOrDefaultAsync();
 
-            var bookingsToDelete = await _context.Bookings
-               .Where(b => b.ApartmentId == booking.ApartmentId)
-               .ToListAsync();
-
             apartment.Status = "Distributed"; // Chuyển trạng thái của apartment thành "Distributed"
 
             _context.Orders.Remove(orderToDelete);
-            await _context.SaveChangesAsync();
-
-            _context.Bookings.RemoveRange(bookingsToDelete);
             await _context.SaveChangesAsync();
 
             return Ok("Orders deleted successfully.");
@@ -361,6 +354,18 @@ namespace SWP_Final.Controllers
             if (order == null)
             {
                 return NotFound($"Order with ID {orderId} not found.");
+            }
+
+            if (newStatus == "Waiting")
+            {
+                var apartment = await _context.Apartments.FindAsync(order.ApartmentId);
+                order.TotalAmount = apartment.Price;
+            }
+
+            if (newStatus == "Unpaid")
+            {
+                var apartment = await _context.Apartments.FindAsync(order.ApartmentId);
+                order.TotalAmount = apartment.Price;
             }
 
             // Update the order status

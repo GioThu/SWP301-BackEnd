@@ -13,6 +13,8 @@ namespace SWP_Final.Entities
         public string? CustomerId { get; set; }
         public string? Status { get; set; }
 
+        public string? Images { get; set; }
+
         public decimal? Money { get; set; }
         public virtual Agency? Agency { get; set; }
 
