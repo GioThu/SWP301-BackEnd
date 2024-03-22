@@ -111,7 +111,7 @@ namespace SWP_Final.Controllers
         }
 
         // DELETE: api/Orders/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteOrder/{id}")]
         public async Task<IActionResult> DeleteOrder(string id)
         {
             if (_context.Orders == null)
@@ -422,6 +422,98 @@ namespace SWP_Final.Controllers
 
             return remainingAmount;
         }
+
+        [HttpGet("GetImage/{id}")]
+        public async Task<IActionResult> GetImage(string id)
+        {
+            var order = await _context.Orders.FindAsync(id);
+            if (order == null )
+            {
+                return NotFound("The object does not exist or has been deleted.");
+            }
+            string filename = "";
+            if (order.Images == null || order.Images.Length == 0)
+            {
+                filename = "Images/common/noimage.png";
+            }
+            else
+            {
+                filename = order.Images;
+            }
+            var path = GetFilePath(filename);
+            if (!System.IO.File.Exists(path))
+            {
+                return NotFound("File does not exist.");
+            }
+
+            var imageStream = System.IO.File.OpenRead(path);
+
+
+            var mimeType = "image/jpeg";
+            if (Path.GetExtension(path).ToLower() == ".png")
+            {
+                mimeType = "image/png";
+            }
+            else if (Path.GetExtension(path).ToLower() == ".gif")
+            {
+                mimeType = "image/gif";
+            }
+            return File(imageStream, mimeType);
+        }
+
+        [HttpPost("UploadImageOrder/{orderid}")]
+        public async Task<IActionResult> UploadImageOrder([FromForm] OrderModel orderModel, string orderid)
+        {
+            var order = await _context.Orders.FindAsync(orderid);
+            if (order == null)
+            {
+                return NotFound("Order not found");
+            }
+
+            
+            int count = 0;
+
+            var orderList = await _context.Orders.ToListAsync();
+
+            string filenameImageOrderModel = order.Images;
+
+            foreach (var orderImage in orderList)
+            {
+                if (orderImage.Images == filenameImageOrderModel)
+                {
+                    count++;
+                }
+            }
+
+            if (orderModel.FileImage != null && orderModel.FileImage.Length > 0)
+            {
+                string fileNameImageOrderModel = $"Images/OrderImages/{Path.GetFileName(orderModel.FileImage.FileName)}";
+
+                if (order.Images != fileNameImageOrderModel && order.Images != valiablenoimage() && count == 0)
+                {
+                    var oldImagePath = GetFilePath(order.Images);
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
+
+                var filepath = GetFilePath(fileNameImageOrderModel);
+                using (var stream = System.IO.File.Create(filepath))
+                {
+                    await orderModel.FileImage.CopyToAsync(stream);
+                }
+
+                order.Images = fileNameImageOrderModel;
+            }
+
+            await _context.SaveChangesAsync();
+            return Ok(order);
+        }
+
+        [NonAction]
+        private string valiablenoimage() => "Images/common/noimage.png";
+        private string GetFilePath(string filename) => Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filename);
 
 
     }
