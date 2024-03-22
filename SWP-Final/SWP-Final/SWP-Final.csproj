@@ -26,6 +26,8 @@
     <Folder Include="wwwroot\Images\common\" />
     <Folder Include="wwwroot\Images\CustomerImages\" />
     <Folder Include="wwwroot\Images\BuildingImages\" />
+    <Folder Include="wwwroot\Images\BookingImages\" />
+    <Folder Include="wwwroot\Images\OrderImages\" />
     <Folder Include="wwwroot\Images\PostImage\" />
   </ItemGroup>
 

@@ -160,12 +160,21 @@ namespace SWP_Final.Controllers
         public async Task<IActionResult> GetImageCustomer(string id)
         {
             var customer = await _context.Customers.FindAsync(id);
-            if (customer == null || string.IsNullOrEmpty(customer.Images))
+            if (customer == null)
             {
-                return NotFound("The image does not exist or has been deleted.");
+                return NotFound("The object does not exist or has been deleted.");
+            }
+            string filename = "";
+            if (customer.Images == null || customer.Images.Length == 0)
+            {
+                filename = "Images/common/noimage.png";
+            }
+            else
+            {
+                filename = customer.Images;
             }
 
-            var path = GetFilePath(customer.Images);
+            var path = GetFilePath(filename);
             if (!System.IO.File.Exists(path))
             {
                 return NotFound("File does not exist.");

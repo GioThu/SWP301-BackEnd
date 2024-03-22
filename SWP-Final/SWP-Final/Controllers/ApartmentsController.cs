@@ -239,10 +239,19 @@ namespace SWP_Final.Controllers
             var apartment = await _context.Apartments.FindAsync(id);
             if (apartment == null)
             {
-                return NotFound("The image does not exist or has been deleted.");
+                return NotFound("The object does not exist or has been deleted.");
+            }
+            string filename = "";
+            if (apartment.ApartmentType == null || apartment.ApartmentType.Length == 0)
+            {
+                filename = "Images/common/noimage.png";
+            }
+            else
+            {
+                filename = apartment.ApartmentType;
             }
 
-            var path = GetFilePath(apartment.ApartmentType);
+            var path = GetFilePath(filename);
             if (!System.IO.File.Exists(path))
             {
                 return NotFound("File does not exist.");

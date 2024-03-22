@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SWP_Final.Entities;
+using SWP_Final.Models;
 
 namespace SWP_Final.Controllers
 {
@@ -53,7 +54,7 @@ namespace SWP_Final.Controllers
 
 
         // DELETE: api/Bookings/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteBooking/{id}")]
         public async Task<IActionResult> DeleteBooking(string id)
         {
             if (_context.Bookings == null)
@@ -126,23 +127,26 @@ namespace SWP_Final.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<ActionResult<Booking>> PostBooking(string customerId, string apartmentId, decimal money)
+        [HttpPost("/{customerId}/{apartmentId}/{money}")]
+        public async Task<ActionResult<Booking>> PostBooking([FromForm] BookingModel bookingModel ,string customerId, string apartmentId, decimal money)
         {
-            if (BookingExistsForApartment(customerId, apartmentId))
+            if (string.IsNullOrEmpty(customerId) || string.IsNullOrEmpty(apartmentId) || money <= 0 || bookingModel == null)
             {
-                return Conflict(new { massage = "A booking with the same Customer and Apartment already exists." });
+                return BadRequest("Invalid data provided.");
             }
 
-            // Fetch AgencyId associated with the Apartment
+            if (BookingExistsForApartment(customerId, apartmentId))
+            {
+                return Conflict(new { message = "A booking with the same Customer and Apartment already exists." });
+            }
+
             var apartment = await _context.Apartments.FindAsync(apartmentId);
             if (apartment == null)
             {
                 return NotFound("Apartment not found.");
             }
-            string agencyId = apartment.AgencyId;
 
-            // Create a new Booking object with automatically generated BookingId
+            var agencyId = apartment.AgencyId;
             var booking = new Booking
             {
                 CustomerId = customerId,
@@ -154,14 +158,27 @@ namespace SWP_Final.Controllers
                 Money = money
             };
 
+            if (bookingModel.FileImage != null && bookingModel.FileImage.Length > 0)
+            {
+                var filenameImageBookingModel = "Images/BookingImages/" + bookingModel.FileImage.FileName;
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filenameImageBookingModel);
+                using (var stream = System.IO.File.Create(path))
+                {
+                    await bookingModel.FileImage.CopyToAsync(stream);
+                }
+                booking.Images = filenameImageBookingModel;
+            }
+            else
+            {
+                return BadRequest("Please upload an image.");
+            }
+
             _context.Bookings.Add(booking);
+
             try
             {
-                var options = new JsonSerializerOptions
-                {
-                    ReferenceHandler = ReferenceHandler.Preserve // Preserve reference to avoid object cycles
-                };
                 await _context.SaveChangesAsync();
+                return CreatedAtAction("GetBooking", new { id = booking.BookingId }, booking);
             }
             catch (DbUpdateException)
             {
@@ -174,9 +191,9 @@ namespace SWP_Final.Controllers
                     throw;
                 }
             }
-
-            return CreatedAtAction("GetBooking", new { id = booking.BookingId }, booking);
         }
+
+
 
 
         [HttpGet("GetAllBookingsByCustomerId/{customerId}")]
@@ -193,7 +210,7 @@ namespace SWP_Final.Controllers
             return bookingbycustomer;
         }
 
-        [HttpPut("ChangeBookingStatus/{id}/{newStatus}")]
+        [HttpPut("ChangeBookingStatus/{bookingId}/{newStatus}")]
         public async Task<IActionResult> ChangeBookingStatus(string bookingId, string newStatus)
         {
             var booking = await _context.Bookings.FindAsync(bookingId);
@@ -245,7 +262,43 @@ namespace SWP_Final.Controllers
 
             return waitingBookings;
         }
+        [HttpGet("GetImage/{id}")]
+        public async Task<IActionResult> GetImage(string id)
+        {
+            var booking = await _context.Bookings.FindAsync(id);
+            if (booking == null )
+            {
+                return NotFound("The object does not exist or has been deleted.");
+            }
+            string filename="";
+            if (booking.Images == null || booking.Images.Length==0)
+            {
+                filename= "Images/common/noimage.png";
+            }
+            else
+            {
+                filename = booking.Images;
+            }
+            var path = GetFilePath(filename);
+            if (!System.IO.File.Exists(path))
+            {
+                return NotFound("File does not exist.");
+            }
 
+            var imageStream = System.IO.File.OpenRead(path);
+
+
+            var mimeType = "image/jpeg";
+            if (Path.GetExtension(path).ToLower() == ".png")
+            {
+                mimeType = "image/png";
+            }
+            else if (Path.GetExtension(path).ToLower() == ".gif")
+            {
+                mimeType = "image/gif";
+            }
+            return File(imageStream, mimeType);
+        }
 
         [NonAction]
         // Method to check if a booking with the same CustomerId and ApartmentId already exists
@@ -254,6 +307,7 @@ namespace SWP_Final.Controllers
             return _context.Bookings.Any(b => b.CustomerId == customerId && b.ApartmentId == apartmentId);
         }
 
+        private string GetFilePath(string filename) => Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filename);
         // Method to check if a booking with the given BookingId already exists
         private bool BookingExists(string id)
         {

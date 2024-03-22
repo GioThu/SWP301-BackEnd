@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SWP_Final.Entities;
 using SWP_Final.Models;
+using Microsoft.Extensions.Hosting;
 
 namespace SWP_Final.Controllers
 {
@@ -133,12 +134,21 @@ namespace SWP_Final.Controllers
         public async Task<IActionResult> GetImage(string id)
         {
             var agency = await _context.Agencies.FindAsync(id);
-            if (agency == null || string.IsNullOrEmpty(agency.Images))
+            if (agency == null)
             {
-                return NotFound("The image does not exist or has been deleted.");
+                return NotFound("The object does not exist or has been deleted.");
+            }
+            string filename = "";
+            if (agency.Images == null || agency.Images.Length == 0)
+            {
+                filename = "Images/common/noimage.png";
+            }
+            else
+            {
+                filename = agency.Images;
             }
 
-            var path = GetFilePath(agency.Images);
+            var path = GetFilePath(filename);
             if (!System.IO.File.Exists(path))
             {
                 return NotFound("File does not exist.");

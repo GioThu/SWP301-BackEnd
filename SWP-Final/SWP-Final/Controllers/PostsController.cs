@@ -162,12 +162,21 @@ namespace SWP_Final.Controllers
         public async Task<IActionResult> GetImage(string id)
         {
             var post = await _context.Posts.FindAsync(id);
-            if (post == null || string.IsNullOrEmpty(post.Images))
+            if (post == null )
             {
-                return NotFound("The image does not exist or has been deleted.");
+                return NotFound("The object does not exist or has been deleted.");
+            }
+            string filename = "";
+            if (post.Images == null || post.Images.Length == 0)
+            {
+                filename = "Images/common/noimage.png";
+            }
+            else
+            {
+                filename = post.Images;
             }
 
-            var path = GetFilePath(post.Images);
+            var path = GetFilePath(filename);
             if (!System.IO.File.Exists(path))
             {
                 return NotFound("File does not exist.");
