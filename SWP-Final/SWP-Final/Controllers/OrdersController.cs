@@ -365,7 +365,6 @@ namespace SWP_Final.Controllers
             if (newStatus == "Unpaid")
             {
                 var apartment = await _context.Apartments.FindAsync(order.ApartmentId);
-                order.TotalAmount = apartment.Price;
             }
 
             // Update the order status

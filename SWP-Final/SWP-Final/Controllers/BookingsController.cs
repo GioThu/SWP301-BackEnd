@@ -304,7 +304,7 @@ namespace SWP_Final.Controllers
         // Method to check if a booking with the same CustomerId and ApartmentId already exists
         private bool BookingExistsForApartment(string customerId, string apartmentId)
         {
-            return _context.Bookings.Any(b => b.CustomerId == customerId && b.ApartmentId == apartmentId);
+            return _context.Bookings.Any(b => b.CustomerId == customerId && b.ApartmentId == apartmentId && b.Status != "BookingFails");
         }
 
         private string GetFilePath(string filename) => Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filename);
