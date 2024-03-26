@@ -123,7 +123,21 @@ namespace SWP_Final.Controllers
             {
                 return NotFound();
             }
+            var booking = await _context.Bookings
+   .FirstOrDefaultAsync(b => b.ApartmentId == order.ApartmentId && b.Status == "Complete");
 
+            if (booking == null)
+            {
+                return NotFound($"Booking with ID {booking.BookingId} not found.");
+            }
+            booking.Status = "BookingFails";
+
+            var apartment = await _context.Apartments.FindAsync(booking.ApartmentId);
+
+            if (apartment == null)
+            {
+                return NotFound($"Apartment with ID {booking.ApartmentId} not found.");
+            }
             _context.Orders.Remove(order);
             await _context.SaveChangesAsync();
 
@@ -518,6 +532,24 @@ namespace SWP_Final.Controllers
             await _context.SaveChangesAsync();
             return Ok(order);
         }
+
+        [HttpGet("GetCustomerBookingFail/{apartmentId}/{customerId}")]
+        public async Task<ActionResult<List<Customer>>> GetCustomerBookingFail(string apartmentId, string customerId)
+        {
+            var customerList = await _context.Bookings
+                .Where(b => b.ApartmentId == apartmentId && b.CustomerId != customerId)
+                .Select(b => b.Customer)
+                .Distinct()
+                .ToListAsync();
+
+            if (customerList == null || customerList.Count == 0)
+            {
+                return NotFound("No customers found for the specified apartment and customer.");
+            }
+
+            return customerList;
+        }
+
 
         [NonAction]
         private string valiablenoimage() => "Images/common/noimage.png";
