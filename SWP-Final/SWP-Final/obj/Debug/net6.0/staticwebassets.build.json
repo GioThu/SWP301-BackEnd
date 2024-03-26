@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "r8fmCvoJa9Y7h1vRaoGW6iqqVKbkSiwV2o0OUGFsgSQ=",
+  "Hash": "w1sZ3TyhnD5CK/wD6xhrIgq0ZVGZFCl3vG1y8NPOfLE=",
   "Source": "SWP-Final",
   "BasePath": "_content/SWP-Final",
   "Mode": "Default",
@@ -1003,6 +1003,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\OrderImages\\1.png"
+    },
+    {
+      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\OrderImages\\ảnh bill-1.jpg",
+      "SourceId": "SWP-Final",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "BasePath": "_content/SWP-Final",
+      "RelativePath": "Images/OrderImages/ảnh bill-1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\OrderImages\\ảnh bill-1.jpg"
     },
     {
       "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\OrderImages\\Screenshot 2024-02-03 115456.png",
