@@ -193,7 +193,8 @@ namespace SWP_Final.Controllers
                 AgencyId = booking.AgencyId,
                 ApartmentId = booking.ApartmentId,
                 Status = "Unpaid", 
-                TotalAmount = booking.Money
+                TotalAmount = booking.Money,
+                CustomerId = booking.CustomerId
             };
 
             // Add the order to the context
@@ -220,6 +221,7 @@ namespace SWP_Final.Controllers
             {
                 return NotFound($"Booking with ID {bookingId} not found.");
             }
+            booking.Status = "BookingFails";
 
             var apartment = await _context.Apartments.FindAsync(booking.ApartmentId);
 
@@ -232,12 +234,19 @@ namespace SWP_Final.Controllers
                .Where(o => o.ApartmentId == booking.ApartmentId)
                .FirstOrDefaultAsync();
 
-            apartment.Status = "Distributed"; // Chuyển trạng thái của apartment thành "Distributed"
+            if (orderToDelete != null) // Kiểm tra xem orderToDelete có null không
+            {
+                apartment.Status = "Distributed"; // Chuyển trạng thái của apartment thành "Distributed"
 
-            _context.Orders.Remove(orderToDelete);
-            await _context.SaveChangesAsync();
+                _context.Orders.Remove(orderToDelete);
+                await _context.SaveChangesAsync();
 
-            return Ok("Orders deleted successfully.");
+                return Ok("Orders deleted successfully.");
+            }
+            else
+            {
+                return NotFound("Order not found.");
+            }
         }
 
         [HttpGet("GetAllOderByAgencyId/{agencyId}")]
