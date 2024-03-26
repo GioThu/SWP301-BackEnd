@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{765D3407-2BD4-47F0-8DBF-0A84B4E2CEAF}|SWP-Final\\SWP-Final.csproj|c:\\users\\admin\\onedrive\\desktop\\swp_backend\\swp301-backend\\swp-final\\swp-final\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{765D3407-2BD4-47F0-8DBF-0A84B4E2CEAF}|SWP-Final\\SWP-Final.csproj|solutionrelative:swp-final\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{765D3407-2BD4-47F0-8DBF-0A84B4E2CEAF}|SWP-Final\\SWP-Final.csproj|c:\\users\\admin\\onedrive\\desktop\\swp_backend\\swp301-backend\\swp-final\\swp-final\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{765D3407-2BD4-47F0-8DBF-0A84B4E2CEAF}|SWP-Final\\SWP-Final.csproj|solutionrelative:swp-final\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{765D3407-2BD4-47F0-8DBF-0A84B4E2CEAF}|SWP-Final\\SWP-Final.csproj|c:\\users\\admin\\onedrive\\desktop\\swp_backend\\swp301-backend\\swp-final\\swp-final\\controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{765D3407-2BD4-47F0-8DBF-0A84B4E2CEAF}|SWP-Final\\SWP-Final.csproj|solutionrelative:swp-final\\controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{765D3407-2BD4-47F0-8DBF-0A84B4E2CEAF}|SWP-Final\\SWP-Final.csproj|c:\\users\\admin\\onedrive\\desktop\\swp_backend\\swp301-backend\\swp-final\\swp-final\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{765D3407-2BD4-47F0-8DBF-0A84B4E2CEAF}|SWP-Final\\SWP-Final.csproj|solutionrelative:swp-final\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CustomersController.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\Controllers\\CustomersController.cs",
+              "RelativeDocumentMoniker": "SWP-Final\\Controllers\\CustomersController.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\Controllers\\CustomersController.cs",
+              "RelativeToolTip": "SWP-Final\\Controllers\\CustomersController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-26T14:48:56.468Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\appsettings.json",
+              "RelativeDocumentMoniker": "SWP-Final\\appsettings.json",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\appsettings.json",
+              "RelativeToolTip": "SWP-Final\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-03-23T16:46:21.671Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "SWP-Final\\Controllers\\OrdersController.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "SWP-Final\\Controllers\\OrdersController.cs",
+              "ViewState": "AQIAAJAAAAAAAAAAAAAqwJwAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-23T16:45:31.547Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BookingsController.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\Controllers\\BookingsController.cs",
+              "RelativeDocumentMoniker": "SWP-Final\\Controllers\\BookingsController.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\Controllers\\BookingsController.cs",
+              "RelativeToolTip": "SWP-Final\\Controllers\\BookingsController.cs",
+              "ViewState": "AQIAAC0BAAAAAAAAAAAAADIBAAB5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-23T16:45:31.619Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
