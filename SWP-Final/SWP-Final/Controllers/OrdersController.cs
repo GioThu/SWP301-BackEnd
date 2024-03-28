@@ -388,6 +388,9 @@ namespace SWP_Final.Controllers
             if (newStatus == "Unpaid")
             {
                 var apartment = await _context.Apartments.FindAsync(order.ApartmentId);
+                var completeBooking = await _context.Bookings
+                                            .FirstOrDefaultAsync(b => b.ApartmentId == order.ApartmentId && b.Status == "Complete");
+                order.TotalAmount = completeBooking.Money;
             }
 
             // Update the order status

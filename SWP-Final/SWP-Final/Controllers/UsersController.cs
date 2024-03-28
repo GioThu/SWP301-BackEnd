@@ -186,6 +186,65 @@ namespace SWP_Final.Controllers
             return Ok(user);
         }
 
+        [HttpGet("GetUserByUsername/{username}")]
+        public async Task<IActionResult> GetUserByUsername(string username)
+        {
+            try
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+
+                if (user == null)
+                {
+                    return NotFound(); // Trả về 404 nếu không tìm thấy người dùng
+                }
+
+                if (user.RoleId == "Agency")
+                {
+                    // Nếu người dùng là agency, trả về UserAccountModel với username, password và phone của class agency
+                    var agency = await _context.Agencies.FirstOrDefaultAsync(a => a.UserId == user.UserId);
+                    if (agency == null)
+                    {
+                        return NotFound("Agency information not found");
+                    }
+
+                    var userAccount = new UserAccountModel
+                    {
+                        Username = user.Username,
+                        Password = user.Password,
+                        Phone = agency.Phone // Phone của agency
+                    };
+
+                    return Ok(userAccount);
+                }
+                else if (user.RoleId == "Customer")
+                {
+                    // Nếu người dùng là customer, trả về UserAccountModel với username và password của class customer
+                    var customer = await _context.Customers.FirstOrDefaultAsync(c => c.UserId == user.UserId);
+                    if (customer == null)
+                    {
+                        return NotFound("Customer information not found");
+                    }
+
+                    var userAccount = new UserAccountModel
+                    {
+                        Username = user.Username,
+                        Password = user.Password,
+                        Phone = customer.Phone // Phone của customer
+                    };
+
+                    return Ok(userAccount);
+                }
+                else
+                {
+                    return BadRequest("Invalid user role"); // Nếu vai trò không hợp lệ
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
     }
 }

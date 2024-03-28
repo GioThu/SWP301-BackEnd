@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "w1sZ3TyhnD5CK/wD6xhrIgq0ZVGZFCl3vG1y8NPOfLE=",
+  "Hash": "sZYrRfJyllvQ0C6d2QmQQSCmDilCvSzTxdfEtrEZm8o=",
   "Source": "SWP-Final",
   "BasePath": "_content/SWP-Final",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "SWP-Final\\wwwroot",
       "Source": "SWP-Final",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\mai.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\mai.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AgenciesImage/mai.png",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AgenciesImage\\mai.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\NỀN ẢO.jpg",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\NỀN ẢO.jpg",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AgenciesImage/NỀN ẢO.jpg",
       "AssetKind": "All",
@@ -55,10 +55,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AgenciesImage\\NỀN ẢO.jpg"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-06 043750.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-06 043750.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AgenciesImage/Screenshot 2024-01-06 043750.png",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-06 043750.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-06 143524.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-06 143524.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AgenciesImage/Screenshot 2024-01-06 143524.png",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-06 143524.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-16 235847.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-16 235847.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AgenciesImage/Screenshot 2024-01-16 235847.png",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-16 235847.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-20 065911.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-20 065911.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AgenciesImage/Screenshot 2024-01-20 065911.png",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-20 065911.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-24 100345.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-24 100345.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AgenciesImage/Screenshot 2024-01-24 100345.png",
       "AssetKind": "All",
@@ -150,10 +150,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-24 100345.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-26 125248.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-26 125248.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AgenciesImage/Screenshot 2024-01-26 125248.png",
       "AssetKind": "All",
@@ -169,10 +169,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AgenciesImage\\Screenshot 2024-01-26 125248.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-02-03 115456.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-02-03 115456.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AgenciesImage/Screenshot 2024-02-03 115456.png",
       "AssetKind": "All",
@@ -188,10 +188,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AgenciesImage\\Screenshot 2024-02-03 115456.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-02-03 121215.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-02-03 121215.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AgenciesImage/Screenshot 2024-02-03 121215.png",
       "AssetKind": "All",
@@ -207,10 +207,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AgenciesImage\\Screenshot 2024-02-03 121215.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-02-23 233020.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-02-23 233020.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AgenciesImage/Screenshot 2024-02-23 233020.png",
       "AssetKind": "All",
@@ -226,10 +226,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AgenciesImage\\Screenshot 2024-02-23 233020.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-02-29 115532.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-02-29 115532.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AgenciesImage/Screenshot 2024-02-29 115532.png",
       "AssetKind": "All",
@@ -245,10 +245,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AgenciesImage\\Screenshot 2024-02-29 115532.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-03-12 192604.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-03-12 192604.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AgenciesImage/Screenshot 2024-03-12 192604.png",
       "AssetKind": "All",
@@ -264,10 +264,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AgenciesImage\\Screenshot 2024-03-12 192604.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-03-12 192604-fotor-20240312193025.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AgenciesImage\\Screenshot 2024-03-12 192604-fotor-20240312193025.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AgenciesImage/Screenshot 2024-03-12 192604-fotor-20240312193025.png",
       "AssetKind": "All",
@@ -283,10 +283,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AgenciesImage\\Screenshot 2024-03-12 192604-fotor-20240312193025.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\ApartmentsImage\\ảnh căn hộ-1.jpg",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\ApartmentsImage\\ảnh căn hộ-1.jpg",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/ApartmentsImage/ảnh căn hộ-1.jpg",
       "AssetKind": "All",
@@ -302,10 +302,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\ApartmentsImage\\ảnh căn hộ-1.jpg"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\ApartmentsImage\\ảnh căn hộ-2.jpg",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\ApartmentsImage\\ảnh căn hộ-2.jpg",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/ApartmentsImage/ảnh căn hộ-2.jpg",
       "AssetKind": "All",
@@ -321,10 +321,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\ApartmentsImage\\ảnh căn hộ-2.jpg"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\ApartmentsImage\\noimage.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\ApartmentsImage\\noimage.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/ApartmentsImage/noimage.png",
       "AssetKind": "All",
@@ -340,10 +340,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\ApartmentsImage\\noimage.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\ApartmentsImage\\Screenshot 2024-03-12 192604.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\ApartmentsImage\\Screenshot 2024-03-12 192604.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/ApartmentsImage/Screenshot 2024-03-12 192604.png",
       "AssetKind": "All",
@@ -359,10 +359,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\ApartmentsImage\\Screenshot 2024-03-12 192604.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\ApartmentsImage\\Screenshot 2024-03-12 192604-fotor-20240312193025.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\ApartmentsImage\\Screenshot 2024-03-12 192604-fotor-20240312193025.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/ApartmentsImage/Screenshot 2024-03-12 192604-fotor-20240312193025.png",
       "AssetKind": "All",
@@ -378,10 +378,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\ApartmentsImage\\Screenshot 2024-03-12 192604-fotor-20240312193025.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AsImage\\1.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AsImage\\1.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AsImage/1.png",
       "AssetKind": "All",
@@ -397,10 +397,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AsImage\\1.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AsImage\\Screenshot 2024-01-06 143524.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AsImage\\Screenshot 2024-01-06 143524.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AsImage/Screenshot 2024-01-06 143524.png",
       "AssetKind": "All",
@@ -416,10 +416,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AsImage\\Screenshot 2024-01-06 143524.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AsImage\\Screenshot 2024-01-24 100345.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AsImage\\Screenshot 2024-01-24 100345.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AsImage/Screenshot 2024-01-24 100345.png",
       "AssetKind": "All",
@@ -435,10 +435,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AsImage\\Screenshot 2024-01-24 100345.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AsImage\\Screenshot 2024-02-03 115456.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AsImage\\Screenshot 2024-02-03 115456.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AsImage/Screenshot 2024-02-03 115456.png",
       "AssetKind": "All",
@@ -454,10 +454,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AsImage\\Screenshot 2024-02-03 115456.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AsImage\\Screenshot 2024-03-12 191143.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AsImage\\Screenshot 2024-03-12 191143.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AsImage/Screenshot 2024-03-12 191143.png",
       "AssetKind": "All",
@@ -473,10 +473,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AsImage\\Screenshot 2024-03-12 191143.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AsImage\\Screenshot 2024-03-12 192604.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AsImage\\Screenshot 2024-03-12 192604.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AsImage/Screenshot 2024-03-12 192604.png",
       "AssetKind": "All",
@@ -492,10 +492,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AsImage\\Screenshot 2024-03-12 192604.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AsImage\\Screenshot 2024-03-12 192604-fotor-20240312193025.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\AsImage\\Screenshot 2024-03-12 192604-fotor-20240312193025.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/AsImage/Screenshot 2024-03-12 192604-fotor-20240312193025.png",
       "AssetKind": "All",
@@ -511,10 +511,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\AsImage\\Screenshot 2024-03-12 192604-fotor-20240312193025.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BookingImages\\ảnh bill-1.jpg",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BookingImages\\ảnh bill-1.jpg",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BookingImages/ảnh bill-1.jpg",
       "AssetKind": "All",
@@ -530,10 +530,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BookingImages\\ảnh bill-1.jpg"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BookingImages\\ảnh bill-2.jpg",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BookingImages\\ảnh bill-2.jpg",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BookingImages/ảnh bill-2.jpg",
       "AssetKind": "All",
@@ -549,10 +549,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BookingImages\\ảnh bill-2.jpg"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BookingImages\\ERD.drawio.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BookingImages\\ERD.drawio.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BookingImages/ERD.drawio.png",
       "AssetKind": "All",
@@ -568,10 +568,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BookingImages\\ERD.drawio.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BookingImages\\NỀN ẢO.jpg",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BookingImages\\NỀN ẢO.jpg",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BookingImages/NỀN ẢO.jpg",
       "AssetKind": "All",
@@ -587,10 +587,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BookingImages\\NỀN ẢO.jpg"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BookingImages\\Screenshot 2024-02-03 115456.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BookingImages\\Screenshot 2024-02-03 115456.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BookingImages/Screenshot 2024-02-03 115456.png",
       "AssetKind": "All",
@@ -606,10 +606,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BookingImages\\Screenshot 2024-02-03 115456.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BookingImages\\Screenshot 2024-02-03 121215.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BookingImages\\Screenshot 2024-02-03 121215.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BookingImages/Screenshot 2024-02-03 121215.png",
       "AssetKind": "All",
@@ -625,10 +625,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BookingImages\\Screenshot 2024-02-03 121215.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BookingImages\\Screenshot 2024-03-12 192604.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BookingImages\\Screenshot 2024-03-12 192604.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BookingImages/Screenshot 2024-03-12 192604.png",
       "AssetKind": "All",
@@ -644,10 +644,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BookingImages\\Screenshot 2024-03-12 192604.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\mai.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\mai.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BuildingImages/mai.png",
       "AssetKind": "All",
@@ -663,10 +663,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BuildingImages\\mai.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\pepe-png-45773.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\pepe-png-45773.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BuildingImages/pepe-png-45773.png",
       "AssetKind": "All",
@@ -682,10 +682,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BuildingImages\\pepe-png-45773.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-06 043750.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-06 043750.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BuildingImages/Screenshot 2024-01-06 043750.png",
       "AssetKind": "All",
@@ -701,10 +701,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-06 043750.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-06 143524.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-06 143524.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BuildingImages/Screenshot 2024-01-06 143524.png",
       "AssetKind": "All",
@@ -720,10 +720,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-06 143524.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-07 001724.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-07 001724.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BuildingImages/Screenshot 2024-01-07 001724.png",
       "AssetKind": "All",
@@ -739,10 +739,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-07 001724.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-07 095550.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-07 095550.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BuildingImages/Screenshot 2024-01-07 095550.png",
       "AssetKind": "All",
@@ -758,10 +758,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-07 095550.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-12 142229.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-12 142229.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BuildingImages/Screenshot 2024-01-12 142229.png",
       "AssetKind": "All",
@@ -777,10 +777,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-12 142229.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-16 235847.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-16 235847.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BuildingImages/Screenshot 2024-01-16 235847.png",
       "AssetKind": "All",
@@ -796,10 +796,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-16 235847.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-20 065911.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-20 065911.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BuildingImages/Screenshot 2024-01-20 065911.png",
       "AssetKind": "All",
@@ -815,10 +815,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-20 065911.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-20 094944.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-20 094944.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BuildingImages/Screenshot 2024-01-20 094944.png",
       "AssetKind": "All",
@@ -834,10 +834,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BuildingImages\\Screenshot 2024-01-20 094944.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-02-29 115532.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\BuildingImages\\Screenshot 2024-02-29 115532.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/BuildingImages/Screenshot 2024-02-29 115532.png",
       "AssetKind": "All",
@@ -853,10 +853,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\BuildingImages\\Screenshot 2024-02-29 115532.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\common\\noimage.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\common\\noimage.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/common/noimage.png",
       "AssetKind": "All",
@@ -872,10 +872,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\common\\noimage.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\CustomerImages\\Process diagram.drawio.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\CustomerImages\\Process diagram.drawio.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/CustomerImages/Process diagram.drawio.png",
       "AssetKind": "All",
@@ -891,10 +891,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\CustomerImages\\Process diagram.drawio.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\CustomerImages\\Screenshot 2024-01-06 043750.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\CustomerImages\\Screenshot 2024-01-06 043750.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/CustomerImages/Screenshot 2024-01-06 043750.png",
       "AssetKind": "All",
@@ -910,10 +910,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\CustomerImages\\Screenshot 2024-01-06 043750.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\CustomerImages\\Screenshot 2024-01-07 171056.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\CustomerImages\\Screenshot 2024-01-07 171056.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/CustomerImages/Screenshot 2024-01-07 171056.png",
       "AssetKind": "All",
@@ -929,10 +929,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\CustomerImages\\Screenshot 2024-01-07 171056.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\CustomerImages\\Screenshot 2024-02-03 115456.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\CustomerImages\\Screenshot 2024-02-03 115456.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/CustomerImages/Screenshot 2024-02-03 115456.png",
       "AssetKind": "All",
@@ -948,10 +948,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\CustomerImages\\Screenshot 2024-02-03 115456.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\CustomerImages\\Screenshot 2024-03-12 192604.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\CustomerImages\\Screenshot 2024-03-12 192604.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/CustomerImages/Screenshot 2024-03-12 192604.png",
       "AssetKind": "All",
@@ -967,10 +967,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\CustomerImages\\Screenshot 2024-03-12 192604.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\CustomerImages\\Screenshot 2024-03-12 192604-fotor-20240312193025.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\CustomerImages\\Screenshot 2024-03-12 192604-fotor-20240312193025.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/CustomerImages/Screenshot 2024-03-12 192604-fotor-20240312193025.png",
       "AssetKind": "All",
@@ -986,10 +986,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\CustomerImages\\Screenshot 2024-03-12 192604-fotor-20240312193025.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\OrderImages\\1.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\OrderImages\\1.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/OrderImages/1.png",
       "AssetKind": "All",
@@ -1005,10 +1005,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\OrderImages\\1.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\OrderImages\\ảnh bill-1.jpg",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\OrderImages\\ảnh bill-1.jpg",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/OrderImages/ảnh bill-1.jpg",
       "AssetKind": "All",
@@ -1024,10 +1024,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\OrderImages\\ảnh bill-1.jpg"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\OrderImages\\Screenshot 2024-02-03 115456.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\OrderImages\\Screenshot 2024-02-03 115456.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/OrderImages/Screenshot 2024-02-03 115456.png",
       "AssetKind": "All",
@@ -1043,10 +1043,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\OrderImages\\Screenshot 2024-02-03 115456.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\OrderImages\\Screenshot 2024-02-03 121215.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\OrderImages\\Screenshot 2024-02-03 121215.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/OrderImages/Screenshot 2024-02-03 121215.png",
       "AssetKind": "All",
@@ -1062,10 +1062,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\OrderImages\\Screenshot 2024-02-03 121215.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\PostImage\\1.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\PostImage\\1.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/PostImage/1.png",
       "AssetKind": "All",
@@ -1081,10 +1081,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\PostImage\\1.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\PostImage\\ảnh tòa nhà-1.webp.crdownload",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\PostImage\\ảnh tòa nhà-1.webp.crdownload",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/PostImage/ảnh tòa nhà-1.webp.crdownload",
       "AssetKind": "All",
@@ -1100,10 +1100,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\PostImage\\ảnh tòa nhà-1.webp.crdownload"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\PostImage\\mai.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\PostImage\\mai.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/PostImage/mai.png",
       "AssetKind": "All",
@@ -1119,10 +1119,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\PostImage\\mai.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\PostImage\\Screenshot 2024-03-12 191143.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\PostImage\\Screenshot 2024-03-12 191143.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/PostImage/Screenshot 2024-03-12 191143.png",
       "AssetKind": "All",
@@ -1138,10 +1138,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\PostImage\\Screenshot 2024-03-12 191143.png"
     },
     {
-      "Identity": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\PostImage\\Screenshot 2024-03-12 192604.png",
+      "Identity": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\Images\\PostImage\\Screenshot 2024-03-12 192604.png",
       "SourceId": "SWP-Final",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\admin\\OneDrive\\Desktop\\SWP_backend\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\SWP301-BackEnd\\SWP-Final\\SWP-Final\\wwwroot\\",
       "BasePath": "_content/SWP-Final",
       "RelativePath": "Images/PostImage/Screenshot 2024-03-12 192604.png",
       "AssetKind": "All",
